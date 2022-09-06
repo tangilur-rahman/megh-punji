@@ -1,3 +1,8 @@
+// external components
+import { PhotoProvider, PhotoView } from "react-photo-view";
+import "react-photo-view/dist/react-photo-view.css";
+
+// internal components
 import "./Gallery.css";
 
 const Gallery = () => {
@@ -11,10 +16,14 @@ const Gallery = () => {
 		<>
 			<div className="row gallery-container m-0">
 				<div className="col-11 p-0 gallery-wrapper">
-					{imageArray &&
-						imageArray.map((value, index) => {
-							return <img src={`assets/images/${value}`} alt="" key={index} />;
-						})}
+					<PhotoProvider>
+						{imageArray &&
+							imageArray.map((item, index) => (
+								<PhotoView key={index} src={`assets/images/${item}`}>
+									<img src={`assets/images/${item}`} alt="img" />
+								</PhotoView>
+							))}
+					</PhotoProvider>
 				</div>
 			</div>
 		</>
