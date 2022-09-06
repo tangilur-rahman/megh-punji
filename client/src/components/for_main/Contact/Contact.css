@@ -10,6 +10,7 @@
 	max-height: fit-content;
 	display: flex;
 	justify-content: center;
+	padding-bottom: 50px;
 }
 
 .contact-container .contact-organization #title {
@@ -96,6 +97,87 @@
 /* contact us start  */
 .contact-container .contact-us {
 	width: 100vw;
-	height: 50vh;
+	min-height: 50vh;
+	max-height: fit-content;
+	display: flex;
+	justify-content: center;
+	background: rgba(23, 23, 23, 0.94);
 }
+
+.contact-container .contact-us #title {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 40px;
+	height: 53px;
+}
+
+.contact-container .contact-us #title h2 {
+	font-weight: 600;
+	letter-spacing: 1px;
+	word-spacing: 5px;
+	font-style: italic;
+	margin: 0;
+	color: white;
+	width: 245px;
+	background: #0047ff;
+	border-radius: 5px;
+	align-self: center;
+	text-align: center;
+	padding: 5px 0;
+}
+
+.contact-container .contact-us .footer-container {
+	color: white;
+	margin-top: 40px;
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.contact-container .contact-us .footer-container h4 {
+	font-weight: 500;
+	font-size: 24px;
+	color: #00a3ff;
+	word-spacing: 1px;
+	letter-spacing: 2px;
+}
+
+.contact-container .contact-us .footer-container a {
+	color: white;
+	text-decoration: none;
+	display: inline-block;
+}
+
+.contact-container .contact-us .footer-container ul {
+	padding-left: 18px;
+}
+
+.contact-container .contact-us .footer-container ul li {
+	cursor: pointer;
+	width: fit-content;
+}
+
+.contact-container .contact-us .footer-container ul li::marker {
+	font-size: 1.3rem;
+}
+
+.contact-container .contact-us .footer-container .footer-middle p {
+	cursor: pointer;
+	display: inline-block;
+}
+
+.contact-container .contact-us .footer-container .footer-right p {
+	cursor: pointer;
+	display: inline-block;
+}
+
+/* responsive start  */
+@media screen and (max-width: 850px) {
+	.contact-container .contact-us .footer-container {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+		grid-gap: 15px;
+	}
+}
+
 /* contact us end  */

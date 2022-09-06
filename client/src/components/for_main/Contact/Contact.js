@@ -66,7 +66,58 @@ const Contact = () => {
 				</div>
 
 				<div className="contact-us row m-0">
-					<div className="col-11 p-0">contact us</div>
+					<div className="col-11 p-0">
+						<div id="title">
+							<h2>Contact Us</h2>
+						</div>
+
+						<div className="footer-container">
+							<div className="footer-left">
+								<div>
+									<h4>Address</h4>
+									<p>
+										Address: House: 836, Road: 2, <br /> Baitul Aman Housing
+										Society, <br /> Adabor Dhaka, Bangladesh 1207
+									</p>
+								</div>
+
+								<div>
+									<h4>Phone</h4>
+									<p>
+										<a href="tel:+8801815-761065" className="hover-link">
+											01815-761065
+										</a>
+										(Sajek)
+										<br />
+										<a href="tel:+8801911-722007" className="hover-link">
+											01911-722007
+										</a>
+										(Dhaka)
+									</p>
+								</div>
+							</div>
+							<div className="footer-middle">
+								<div>
+									<h4>Facebook Page</h4>
+									<p className="hover-link">Megh Punji</p>
+								</div>
+
+								<div>
+									<h4>Instagram</h4>
+									<p className="hover-link">@megh-punji</p>
+								</div>
+							</div>
+							<div className="footer-right">
+								<h4>Important Links</h4>
+								<ul>
+									<li className="hover-link">Tarasha</li>
+									<li className="hover-link">Purbasha</li>
+									<li className="hover-link">Rodela</li>
+									<li className="hover-link">Meghla</li>
+								</ul>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</>
