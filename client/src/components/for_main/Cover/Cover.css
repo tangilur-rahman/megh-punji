@@ -1,0 +1,92 @@
+.cover-container {
+	background-image: url("./cover.png");
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	width: 100vw;
+	height: 89vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: auto;
+}
+
+.cover-container .cover-right {
+	display: flex;
+	flex-direction: column;
+	border-radius: 16px;
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	background: #3182fad9;
+	height: max-content;
+	width: 450px;
+	border-radius: 6px;
+	padding: 10px !important;
+}
+
+.cover-container .cover-right #header {
+	margin-top: 10px;
+	padding: 5px;
+	background: #0e51ff;
+	color: white;
+	border-radius: 5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.cover-container .cover-right #header h4 {
+	margin: 0;
+	font-style: italic;
+	text-shadow: 0 0 10px #ffffff;
+}
+
+.cover-container .cover-right ul {
+	display: table;
+}
+
+.cover-container .cover-right ul p {
+	margin: 0;
+	text-align: center;
+	font-weight: 500;
+	font-size: 20px;
+	line-height: 24px;
+	color: #ffc700;
+	margin: 10px 20px 10px 0;
+}
+
+.cover-container .cover-right ul li {
+	color: white;
+	text-shadow: 4px 4px 2px rgba(150, 150, 150, 1);
+	text-align: justify;
+}
+
+.cover-container .cover-right ul li::marker {
+	font-size: 1.5em;
+	color: white;
+}
+
+/* responsive start  */
+@media screen and (max-width: 500px) {
+	.cover-container .cover-right {
+		width: 400px;
+		margin-top: -50px;
+	}
+}
+
+@media screen and (max-width: 450px) {
+	.cover-container .cover-right {
+		width: 380px;
+	}
+}
+
+@media screen and (max-width: 400px) {
+	.cover-container .cover-right {
+		width: 340px;
+		margin: 30px 0;
+	}
+
+	.cover-container .cover-right #header h4 {
+		font-size: 20px;
+	}
+}

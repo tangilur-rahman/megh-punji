@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+	/* common */
+	--card-border-radius: 10px;
+	--body-bg: #f1f4fb;
+	--box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.05);
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Poppins", sans-serif;
+}
+
+body {
+	background-color: var(--body-bg);
+	overflow-x: hidden;
+}
+
+::selection {
+	background: #80ed99;
+}
+
+/* Scrollbar Styling  start */
+::-webkit-scrollbar {
+	width: 4px;
+}
+
+::-webkit-scrollbar-track {
+	background-color: transparent;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	background: #2ec4b6;
+}
+/* Scrollbar Styling  end */
+
+/* input - number remove arrow start */
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+	-moz-appearance: textfield;
+}
+/* input - number remove arrow end */
+
+/* for hover link start  */
+.hover-link::after {
+	content: "";
+	display: block;
+	width: 0;
+	height: 2px;
+	background: #90e0ef;
+	transition: width 0.3s;
+}
+
+.hover-link:hover::after {
+	width: 100%;
+	transition: width 0.3s;
+}
+/* for hover link end  */
