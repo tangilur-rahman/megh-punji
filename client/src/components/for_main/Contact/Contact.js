@@ -36,7 +36,7 @@ const Contact = () => {
 								/>
 
 								<div className="social-icon">
-									<a href="" target="_blank">
+									<a href="#" target="_blank">
 										<img
 											src="/assets/logo/facebook.png"
 											alt="social-icon"
@@ -44,7 +44,7 @@ const Contact = () => {
 										/>
 									</a>
 
-									<a href="" target="_blank">
+									<a href="#" target="_blank">
 										<img
 											src="/assets/logo/whatsapp.png"
 											alt="social-icon"
@@ -52,7 +52,7 @@ const Contact = () => {
 										/>
 									</a>
 
-									<a href="" target="_blank">
+									<a href="#" target="_blank">
 										<img
 											src="/assets/logo/playstore.png"
 											alt="social-icon"
