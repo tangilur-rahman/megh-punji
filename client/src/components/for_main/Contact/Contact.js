@@ -1,7 +1,43 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+
+// external components
+import { useState } from "react";
+import { PhotoSlider } from "react-photo-view";
+import "react-photo-view/dist/react-photo-view.css";
+
+// internal components
 import "./Contact.css";
 
 const Contact = () => {
+	const [tarashaT, setTarashaT] = useState("");
+	const [purbashaT, setPurbashaT] = useState("");
+	const [rodelaT, setRodelaT] = useState("");
+	const [meghlaT, setMeghlaT] = useState("");
+
+	const tarashaArray = [
+		"/assets/cottage/Tarasha/Tarasha_1.jpg",
+		"/assets/cottage/Tarasha/Tarasha_2.jpg",
+		"/assets/cottage/Tarasha/Tarasha_3.jpg"
+	];
+
+	const purbashaArray = [
+		"/assets/cottage/Purbasha/Purbasha_1.jpg",
+		"/assets/cottage/Purbasha/Purbasha_2.jpg",
+		"/assets/cottage/Purbasha/Purbasha_3.jpg"
+	];
+
+	const rodelaArray = [
+		"/assets/cottage/Rodela/Rodela_1.jpg",
+		"/assets/cottage/Rodela/Rodela_2.jpg",
+		"/assets/cottage/Rodela/Rodela_3.jpg"
+	];
+
+	const meghlaArray = [
+		"/assets/cottage/Meghla/Meghla_1.jpg",
+		"/assets/cottage/Meghla/Meghla_2.jpg",
+		"/assets/cottage/Meghla/Meghla_3.jpg"
+	];
+
 	return (
 		<>
 			<div className="contact-container">
@@ -110,11 +146,55 @@ const Contact = () => {
 							<div className="footer-right">
 								<h4>Important Links</h4>
 								<ul>
-									<li className="hover-link">Tarasha</li>
-									<li className="hover-link">Purbasha</li>
-									<li className="hover-link">Rodela</li>
-									<li className="hover-link">Meghla</li>
+									<li className="hover-link" onClick={() => setTarashaT(true)}>
+										Tarasha
+									</li>
+									<li className="hover-link" onClick={() => setPurbashaT(true)}>
+										Purbasha
+									</li>
+									<li className="hover-link" onClick={() => setRodelaT(true)}>
+										Rodela
+									</li>
+									<li className="hover-link" onClick={() => setMeghlaT(true)}>
+										Meghla
+									</li>
 								</ul>
+
+								<PhotoSlider
+									images={tarashaArray.map((item, index) => ({
+										src: item,
+										key: index
+									}))}
+									visible={tarashaT}
+									onClose={() => setTarashaT(false)}
+								/>
+
+								<PhotoSlider
+									images={meghlaArray.map((item, index) => ({
+										src: item,
+										key: index
+									}))}
+									visible={meghlaT}
+									onClose={() => setMeghlaT(false)}
+								/>
+
+								<PhotoSlider
+									images={purbashaArray.map((item, index) => ({
+										src: item,
+										key: index
+									}))}
+									visible={purbashaT}
+									onClose={() => setPurbashaT(false)}
+								/>
+
+								<PhotoSlider
+									images={rodelaArray.map((item, index) => ({
+										src: item,
+										key: index
+									}))}
+									visible={rodelaT}
+									onClose={() => setRodelaT(false)}
+								/>
 							</div>
 						</div>
 					</div>
