@@ -1,0 +1,33 @@
+.copyright-container {
+	min-height: 65px;
+	max-height: fit-content;
+	background: #090909;
+	color: white;
+	display: flex;
+	justify-content: center;
+}
+
+.copyright-container .copyright-wrapper {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.copyright-container p {
+	margin: 0;
+}
+
+.copyright-container p span {
+	color: #00a3ff;
+	font-weight: 500;
+	text-shadow: 0 0 10px #00a3ff;
+}
+
+/* responsive start  */
+@media screen and (max-width: 600px) {
+	.copyright-container .copyright-wrapper {
+		display: block;
+		text-align: center;
+		padding: 15px 0 !important;
+	}
+}

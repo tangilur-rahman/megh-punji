@@ -2,6 +2,7 @@
 
 // internal components
 import Contact from "../../components/for_main/Contact/Contact";
+import Copyright from "../../components/for_main/Copyright/Copyright";
 import Cover from "../../components/for_main/Cover/Cover";
 import Gallery from "../../components/for_main/Gallery/Gallery";
 import Navbar from "../../components/for_main/Navbar/Navbar";
@@ -22,6 +23,7 @@ const MainPage = () => {
 						<Gallery />
 						<Reservation />
 						<Contact />
+						<Copyright />
 					</div>
 				</div>
 			</div>
