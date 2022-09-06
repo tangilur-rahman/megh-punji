@@ -1,5 +1,6 @@
 // external components
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-scroll";
 
 // internal components
 import "./Navbar.css";
@@ -34,16 +35,52 @@ const Navbar = () => {
 					<div className="nav-right">
 						<ul id={menuT ? "mobile" : "desktop"} ref={myRef}>
 							<li className="hover-link" onClick={() => setMenuT(false)}>
-								BRITTO
+								<Link
+									activeClass="active"
+									to="gallery-container"
+									spy={true}
+									smooth={true}
+									offset={-100}
+									duration={500}
+								>
+									BRITTO
+								</Link>
 							</li>
 							<li className="hover-link" onClick={() => setMenuT(false)}>
-								SAJEK
+								<Link
+									activeClass="active"
+									to="virtual-container"
+									spy={true}
+									smooth={true}
+									offset={0}
+									duration={500}
+								>
+									SAJEK
+								</Link>
 							</li>
 							<li className="hover-link" onClick={() => setMenuT(false)}>
-								BOOK COTTAGE
+								<Link
+									activeClass="active"
+									to="reservation-container"
+									spy={true}
+									smooth={true}
+									offset={0}
+									duration={500}
+								>
+									BOOK COTTAGE
+								</Link>
 							</li>
 							<li className="hover-link" onClick={() => setMenuT(false)}>
-								CONTACT US
+								<Link
+									activeClass="active"
+									to="contact-container"
+									spy={true}
+									smooth={true}
+									offset={0}
+									duration={500}
+								>
+									CONTACT US
+								</Link>
 							</li>
 						</ul>
 

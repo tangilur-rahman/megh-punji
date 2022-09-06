@@ -3,7 +3,7 @@ import "./Virtual.css";
 const Virtual = () => {
 	return (
 		<>
-			<div className="row m-0 virtual-container">
+			<div className="row m-0 virtual-container" id="virtual-section">
 				<div className="col-11 p-0 virtual-wrapper">
 					<div className="title-text">
 						<h2>HAVE A VIRTUAL TOUR</h2>

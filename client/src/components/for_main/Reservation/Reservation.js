@@ -48,7 +48,7 @@ const Reservation = () => {
 
 	return (
 		<>
-			<div className="reservation-container">
+			<div className="reservation-container" id="reservation-section">
 				<div className="row m-0 reserve-header-container">
 					<div className="col-11 reserve-header p-0">
 						<h2>Make A Reservation</h2>

@@ -14,7 +14,7 @@ const Gallery = () => {
 
 	return (
 		<>
-			<div className="row gallery-container m-0">
+			<div className="row gallery-container m-0" id="gallery-section">
 				<div className="col-11 p-0 gallery-wrapper">
 					<PhotoProvider>
 						{imageArray &&
