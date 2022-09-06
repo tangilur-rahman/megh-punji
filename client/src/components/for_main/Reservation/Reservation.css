@@ -1,0 +1,187 @@
+.reservation-container {
+	width: 100vw;
+	min-height: 100vh;
+	max-height: max-content;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+.reservation-container .reserve-header-container {
+	width: 100%;
+	height: 150px;
+	background: #01369d;
+	display: flex;
+	justify-content: center;
+}
+
+.reservation-container .reserve-header {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.reservation-container .reserve-header h2 {
+	font-size: 35px;
+	font-weight: 700;
+	color: white;
+	text-shadow: 0 0 10px #ffffff;
+	font-style: italic;
+	letter-spacing: 1px;
+	word-spacing: 5px;
+}
+
+.reservation-container .reserve-header h6 {
+	font-style: italic;
+	font-weight: 700;
+	font-size: 20px;
+	text-shadow: 4px 4px 2px rgb(150 150 150);
+	color: #ffc701;
+	letter-spacing: 1px;
+	word-spacing: 5px;
+}
+
+.reservation-container .reserve-body-container {
+	width: 100%;
+	height: 100%;
+	background-image: url("./../../../../public/assets/cover/reserve-cover.jpg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	display: flex;
+	justify-content: center;
+}
+
+.reservation-container .reserve-body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.reservation-container .reserve-body .pick-date {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 500px;
+	height: 130px;
+	background: rgba(0, 0, 0, 0.79);
+	border-radius: 10px;
+	margin: 40px 0;
+}
+
+.reserve-body .pick-date label {
+	font-weight: 500;
+	font-size: 20px;
+	color: #ffffff;
+	text-shadow: 0 0 1px #ffffff;
+	margin-bottom: 10px;
+	cursor: pointer;
+}
+
+.reserve-body .pick-date input {
+	width: 87%;
+	height: 45px;
+	background: #ffffff;
+	border: 2px solid #00b2ff;
+	border-radius: 3px;
+}
+
+.reserve-body .pick-date input::placeholder {
+	font-weight: 500;
+	padding-left: 10px;
+}
+
+.reserve-body .cottage-container {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	grid-gap: 15px;
+}
+
+.reserve-body .cottage-container .cottage {
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.74);
+	border-radius: 10px;
+	color: white;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 15px;
+}
+
+.reserve-body .cottage-container .cottage h4 {
+	text-shadow: 0 0 10px #ffffff;
+	font-size: 24px;
+	padding: 10px 0;
+	margin: 0;
+}
+
+.reserve-body .cottage-container .cottage img {
+	width: 90%;
+	height: 90%;
+	border: 2px solid #ffffff;
+	border-radius: 5px;
+}
+
+.reserve-body .cottage-container .cottage h6 {
+	margin: 0;
+	padding: 15px 0;
+	font-size: 17px;
+	font-weight: 400;
+}
+
+.reserve-body .cottage-container .cottage h6 span {
+	color: #ffb800;
+	font-weight: 600;
+	margin-left: 10px;
+}
+
+.reserve-body .cottage-container .cottage button {
+	padding: 6px 20px;
+	font-size: 17px;
+	font-weight: 500;
+	background: #0d5e00;
+	border-radius: 10px;
+}
+
+.reserve-body .cottage-container .cottage button:hover {
+	transform: scale(0.97);
+	transition: 0.5s;
+}
+
+.reserve-body .cottage-container .cottage button:active {
+	transform: scale(1.2);
+	transition: 0.5s;
+}
+
+/* responsive start  */
+
+@media screen and (max-width: 1200px) {
+	.reserve-body .cottage-container {
+		padding-bottom: 40px;
+	}
+
+	.reservation-container .reserve-body-container {
+		background-position: center bottom;
+	}
+}
+
+@media screen and (max-width: 530px) {
+	.reservation-container .reserve-body .pick-date {
+		width: 95%;
+	}
+}
+
+@media screen and (max-width: 450px) {
+	.reservation-container .reserve-header h2 {
+		font-size: 30px;
+	}
+}
+
+@media screen and (max-width: 400px) {
+	.reservation-container .reserve-header h2 {
+		font-size: 28px;
+	}
+}
