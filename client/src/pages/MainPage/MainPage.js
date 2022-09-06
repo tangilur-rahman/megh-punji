@@ -2,6 +2,7 @@
 
 // internal components
 import Cover from "../../components/for_main/Cover/Cover";
+import Gallery from "../../components/for_main/Gallery/Gallery";
 import Navbar from "../../components/for_main/Navbar/Navbar";
 import Virtual from "../../components/for_main/Virtual/Virtual";
 
@@ -16,6 +17,7 @@ const MainPage = () => {
 						<Navbar />
 						<Cover />
 						<Virtual />
+						<Gallery />
 					</div>
 				</div>
 			</div>
