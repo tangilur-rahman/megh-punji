@@ -1,9 +1,10 @@
 .virtual-container {
 	width: 100vw;
-	height: 100vh;
+	height: 102vh;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	overflow: hidden;
 }
 
 .virtual-container .virtual-wrapper {
@@ -17,7 +18,14 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	margin: 20px 0 0 0;
+}
+
+.virtual-container .title-text:first-child {
+	margin-top: 20px;
+}
+
+.virtual-container .title-text:last-child {
+	margin: 30px 0 20px 0;
 }
 
 .virtual-container .title-text h2 {
@@ -47,7 +55,7 @@
 .virtual-container .title-text p {
 	font-weight: 500;
 	text-align: justify;
-	margin: 12px 0;
+	margin: 12px 0 8px 0;
 }
 
 .virtual-container video {
@@ -58,7 +66,17 @@
 }
 
 /* responsive start  */
+@media screen and (max-width: 1300px) {
+	.virtual-container .title-text:last-child {
+		margin: 20px 0;
+	}
+}
 @media screen and (max-width: 950px) {
+	.virtual-container {
+		height: 100vh;
+		overflow: auto;
+	}
+
 	.virtual-container video {
 		width: 100%;
 		height: 100%;
