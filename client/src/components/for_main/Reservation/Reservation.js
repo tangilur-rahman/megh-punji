@@ -7,10 +7,43 @@ import "./Reservation.css";
 
 const Reservation = () => {
 	const cottageArray = [
-		{ title: "Meghla", img: "Meghla.jpg", rent: 5000 },
-		{ title: "Purbasha", img: "Purbasha.jpg", rent: 4500 },
-		{ title: "Rodela", img: "Rodela.jpg", rent: 4500 },
-		{ title: "Tarasha", img: "Tarasha.jpg", rent: 4500 }
+		{
+			title: "Meghla",
+			rent: 5000,
+			array: [
+				"/Meghla/Meghla_1.jpg",
+				"/Meghla/Meghla_2.jpg",
+				"/Meghla/Meghla_3.jpg"
+			]
+		},
+		{
+			title: "Purbasha",
+			rent: 4500,
+			array: [
+				"/Purbasha/Purbasha_1.jpg",
+				"/Purbasha/Purbasha_2.jpg",
+				"/Purbasha/Purbasha_3.jpg"
+			]
+		},
+
+		{
+			title: "Rodela",
+			rent: 4500,
+			array: [
+				"/Rodela/Rodela_1.jpg",
+				"/Rodela/Rodela_2.jpg",
+				"/Rodela/Rodela_3.jpg"
+			]
+		},
+		{
+			title: "Tarasha",
+			rent: 5000,
+			array: [
+				"/Tarasha/Tarasha_1.jpg",
+				"/Tarasha/Tarasha_2.jpg",
+				"/Tarasha/Tarasha_3.jpg"
+			]
+		}
 	];
 
 	return (
@@ -38,12 +71,25 @@ const Reservation = () => {
 											<h4>{value.title}</h4>
 
 											<PhotoProvider>
-												<PhotoView src={`assets/cottage/${value.img}`}>
-													<img
-														src={`assets/cottage/${value.img}`}
-														alt="cottage-img"
-													/>
-												</PhotoView>
+												{value.array &&
+													value.array.map((item, item_key) => {
+														return (
+															<PhotoView
+																src={`assets/cottage/${item}`}
+																key={item_key}
+															>
+																{item_key === 0 ? (
+																	<img
+																		src={`assets/cottage/${item}`}
+																		alt="cottage-img"
+																	/>
+																) : (
+																	""
+																)}
+															</PhotoView>
+														);
+													})}
+												{console.log(value.array)}
 											</PhotoProvider>
 
 											<h6>

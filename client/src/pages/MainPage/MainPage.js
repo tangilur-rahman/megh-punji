@@ -1,6 +1,7 @@
 // external components
 
 // internal components
+import Contact from "../../components/for_main/Contact/Contact";
 import Cover from "../../components/for_main/Cover/Cover";
 import Gallery from "../../components/for_main/Gallery/Gallery";
 import Navbar from "../../components/for_main/Navbar/Navbar";
@@ -20,6 +21,7 @@ const MainPage = () => {
 						<Virtual />
 						<Gallery />
 						<Reservation />
+						<Contact />
 					</div>
 				</div>
 			</div>
