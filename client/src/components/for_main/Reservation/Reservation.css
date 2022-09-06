@@ -9,7 +9,7 @@
 
 .reservation-container .reserve-header-container {
 	width: 100%;
-	height: 150px;
+	height: 130px;
 	background: #01369d;
 	display: flex;
 	justify-content: center;
@@ -97,6 +97,7 @@
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 	grid-gap: 15px;
+	padding-bottom: 40px;
 }
 
 .reserve-body .cottage-container .cottage {
@@ -159,10 +160,6 @@
 /* responsive start  */
 
 @media screen and (max-width: 1200px) {
-	.reserve-body .cottage-container {
-		padding-bottom: 40px;
-	}
-
 	.reservation-container .reserve-body-container {
 		background-position: center bottom;
 	}
