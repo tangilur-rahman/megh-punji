@@ -1,0 +1,216 @@
+.booking-container {
+	width: 100%;
+	position: fixed;
+	top: 48%;
+	left: 50%;
+	z-index: 10000;
+	-webkit-transform: translate(-50%, -50%);
+	-moz-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	-o-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	display: flex;
+	justify-content: center;
+}
+
+.booking-container .booking-wrapper {
+	background-color: black;
+	border-radius: 5px;
+	height: 92vh;
+	overflow-y: auto;
+	overflow-x: hidden;
+	position: relative;
+}
+
+.booking-container .booking-wrapper#details {
+	height: 96vh;
+	margin-top: 20px;
+}
+
+.booking-container .booking-wrapper .header {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+.booking-container .booking-wrapper .header h2 {
+	color: white;
+	padding: 10px 0 12px 0;
+	border-bottom: 6px solid #202020;
+	width: 100%;
+	text-align: center;
+	font-size: 35px;
+	font-weight: 600;
+	text-shadow: 0 0 10px #ffffff;
+	font-style: italic;
+	letter-spacing: 1px;
+	word-spacing: 5px;
+	margin: 0;
+}
+
+.booking-container .booking-wrapper .header h6 {
+	color: white;
+	padding: 5px 0;
+	font-size: 16px;
+	font-weight: 600;
+	text-shadow: 0 0 10px #ffffff;
+	font-style: italic;
+	letter-spacing: 1px;
+	word-spacing: 5px;
+	margin: 0;
+}
+
+.booking-container .booking-wrapper form {
+	background-color: #202020;
+	color: white;
+	padding: 0px 20px;
+}
+
+.booking-container .booking-wrapper form table {
+	border-collapse: separate;
+	border-spacing: 0 1em;
+}
+
+.booking-container .booking-wrapper form tr td {
+	margin: 0 !important;
+}
+
+.booking-container .booking-wrapper form tr td:first-child {
+	width: 120px;
+	font-weight: 500;
+}
+
+.booking-container .booking-wrapper form tr td:nth-child(2) {
+	margin-left: 10px;
+}
+
+.booking-wrapper form tr td:nth-child(2) input {
+	background: none;
+	width: 100%;
+	height: 35px;
+	font-size: 16px;
+	line-height: 35px;
+	border: 1px solid #666;
+	border-radius: 5px;
+	padding: 0 10px;
+	color: white;
+	-webkit-transition: border-color 0.5s;
+	transition: border-color 0.5s;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.booking-wrapper form tr td:nth-child(2) input:focus {
+	outline: 2px solid #c2daff;
+}
+
+.booking-wrapper form tr td button {
+	font-weight: 500;
+}
+
+.booking-wrapper form tr td button:hover {
+	transform: scale(0.97);
+	transition: all 0.5s;
+}
+
+.booking-wrapper form tr td button:active {
+	transform: scale(1.2);
+	transition: all 0.5s;
+}
+
+.booking-wrapper .booking-config {
+	background-color: #101010;
+	padding-top: 7px;
+	color: rgb(255, 187, 51);
+	font-size: 15px;
+	text-align: justify;
+	font-weight: 500;
+}
+
+.booking-wrapper .booking-config p span {
+	color: rgb(255, 0, 0);
+	margin-right: 5px;
+	font-weight: 600;
+}
+
+.booking-wrapper .booking-config p h6 {
+	margin: 0;
+	display: inline-block;
+	font-weight: 600;
+	color: #8ecae6;
+	cursor: pointer;
+}
+
+.booking-wrapper .booking-config p h5 {
+	margin: 0;
+}
+
+/* close button style start  */
+.close-modal-button {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	z-index: 10;
+	background-color: #fff;
+	border-radius: 4em;
+	height: 2em;
+	width: 2em;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.close-modal-button:before {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	font-family: fontAwesome;
+	content: "";
+	color: #000;
+	font-size: 1.5em;
+	transform: translate(-50%, -50%);
+}
+
+.close-modal-button:hover:before {
+	color: #ba3242;
+	transition: background 350ms cubic-bezier(0.42, 0, 0.58, 1) 10ms,
+		all 200ms cubic-bezier(0.42, 0, 0.58, 1) 10ms;
+	transform: translate(-50%, -50%) rotate(-0.25turn);
+}
+
+/* responsive start  */
+@media screen and (max-width: 500px) {
+	.booking-container .booking-wrapper form {
+		padding: 0 10px;
+	}
+
+	.booking-container .booking-wrapper form tr {
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 450px) {
+	.booking-container .booking-wrapper form tr td:first-child {
+		width: 100px;
+	}
+}
+
+@media screen and (max-width: 400px) {
+	.booking-container {
+		margin-top: 40px !important;
+	}
+
+	.booking-wrapper form tr td button {
+		width: 100%;
+	}
+
+	.booking-wrapper .booking-config p:last-child {
+		padding-bottom: 20px;
+	}
+
+	.close-modal-button {
+		right: 0px;
+		top: 0px;
+	}
+}

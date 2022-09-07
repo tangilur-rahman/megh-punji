@@ -1,6 +1,8 @@
 // external components
+import { useState } from "react";
 
 // internal components
+import Booking from "../../components/for_main/Booking/Booking";
 import Contact from "../../components/for_main/Contact/Contact";
 import Copyright from "../../components/for_main/Copyright/Copyright";
 import Cover from "../../components/for_main/Cover/Cover";
@@ -12,20 +14,27 @@ import Virtual from "../../components/for_main/Virtual/Virtual";
 import "./MainPage.css";
 
 const MainPage = () => {
+	// booking container toggle
+	const [bookingT, setBookingT] = useState("");
+
 	return (
 		<>
 			<div className="container-fluid p-0">
-				<div className="row m-0 main-page-container">
+				<div
+					className="row m-0 main-page-container"
+					id={bookingT ? "active" : ""}
+				>
 					<div className="col p-0">
 						<Navbar />
 						<Cover />
 						<Virtual />
 						<Gallery />
-						<Reservation />
+						<Reservation setBookingT={setBookingT} />
 						<Contact />
 						<Copyright />
 					</div>
 				</div>
+				{bookingT && <Booking setBookingT={setBookingT} />}
 			</div>
 		</>
 	);

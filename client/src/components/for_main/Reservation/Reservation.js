@@ -5,7 +5,7 @@ import "react-photo-view/dist/react-photo-view.css";
 // internal components
 import "./Reservation.css";
 
-const Reservation = () => {
+const Reservation = ({ setBookingT }) => {
 	const cottageArray = [
 		{
 			title: "Meghla",
@@ -97,7 +97,11 @@ const Reservation = () => {
 												<span>{value.rent}৳</span>
 											</h6>
 
-											<button type="button" className="btn btn-success">
+											<button
+												type="button"
+												className="btn btn-success"
+												onClick={() => setBookingT(true)}
+											>
 												Reserve
 											</button>
 										</div>

@@ -1,4 +1,12 @@
 .main-page-container {
 	display: flex;
 	flex-direction: column;
+	position: relative;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.main-page-container#active {
+	filter: blur(1.5px);
+	filter: brightness(65%);
 }
