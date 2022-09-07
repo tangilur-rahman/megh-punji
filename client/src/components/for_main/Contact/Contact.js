@@ -52,14 +52,14 @@ const Contact = () => {
 							<div className="col-7 p-0 content-wrapper">
 								<p>
 									❝Traveling around the world, one day or another we will meet
-									other certainly”. Bangladesh, the queen of beauty herself is a
+									other certainly❞. Bangladesh, the queen of beauty herself is a
 									land of exhilarating places. Longest natural sea beach,
 									mangrove forest, secret green hills and waterfalls, rich flora
 									& fauna, monsoon mists over the delta, dazzling tribal &
 									silent rural life, colorful festive, waterways like
-									superhighways; “Britto – the circle of travel & tourism” will
+									superhighways; ❝Britto – the circle of travel & tourism❞ will
 									be your reliable planner for all of these explorations in
-									Bangladesh.❞ <br />
+									Bangladesh. <br />
 									<br /> Happy and Safe Traveling... Be Traveler!!!
 								</p>
 							</div>
