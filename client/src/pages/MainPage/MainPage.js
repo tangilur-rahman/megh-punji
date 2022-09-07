@@ -1,5 +1,5 @@
 // external components
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // internal components
 import Booking from "../../components/for_main/Booking/Booking";
@@ -14,8 +14,15 @@ import Virtual from "../../components/for_main/Virtual/Virtual";
 import "./MainPage.css";
 
 const MainPage = () => {
-	// booking container toggle
+	// for booking container toggle
 	const [bookingT, setBookingT] = useState("");
+
+	// scroll stop when model is opened start
+	useEffect(() => {
+		if (bookingT) document.body.style.overflow = "hidden";
+		else document.body.style.overflow = "visible";
+	}, [bookingT]);
+	// scroll stop when model is opened start
 
 	return (
 		<>

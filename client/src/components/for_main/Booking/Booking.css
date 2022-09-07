@@ -191,26 +191,34 @@
 }
 
 @media screen and (max-width: 450px) {
+	.booking-container .booking-wrapper {
+		height: 94vh;
+	}
+
+	.booking-container .booking-wrapper#details {
+		height: 91vh;
+	}
+
 	.booking-container .booking-wrapper form tr td:first-child {
 		width: 100px;
 	}
-}
 
-@media screen and (max-width: 400px) {
 	.booking-container {
-		margin-top: 40px !important;
-	}
-
-	.booking-wrapper form tr td button {
-		width: 100%;
-	}
-
-	.booking-wrapper .booking-config p:last-child {
-		padding-bottom: 20px;
+		margin-top: 20px !important;
 	}
 
 	.close-modal-button {
 		right: 0px;
 		top: 0px;
+	}
+}
+
+@media screen and (max-width: 400px) {
+	.booking-wrapper .booking-config p:last-child {
+		padding-bottom: 20px;
+	}
+
+	.booking-wrapper form tr td button {
+		width: 100%;
 	}
 }
