@@ -3,7 +3,7 @@
 	position: fixed;
 	top: 48%;
 	left: 50%;
-	z-index: 10000;
+	z-index: 100;
 	-webkit-transform: translate(-50%, -50%);
 	-moz-transform: translate(-50%, -50%);
 	-ms-transform: translate(-50%, -50%);
@@ -119,6 +119,10 @@
 	transition: all 0.5s;
 }
 
+.booking-wrapper .DatePicker__calendarContainer {
+	bottom: 0;
+}
+
 .booking-wrapper .booking-config {
 	background-color: #101010;
 	padding-top: 7px;
@@ -188,6 +192,10 @@
 	.booking-container .booking-wrapper form tr {
 		width: 100%;
 	}
+
+	.booking-wrapper .DatePicker__calendarContainer {
+		left: 80px !important;
+	}
 }
 
 @media screen and (max-width: 450px) {
@@ -220,5 +228,13 @@
 
 	.booking-wrapper form tr td button {
 		width: 100%;
+	}
+
+	.booking-wrapper .DatePicker__calendarContainer {
+		left: 40px !important;
+	}
+
+	.booking-wrapper .DatePicker__calendarContainer {
+		left: 40px !important;
 	}
 }

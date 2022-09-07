@@ -80,17 +80,25 @@
 	cursor: pointer;
 }
 
-.reserve-body .pick-date input {
-	width: 87%;
+.reserve-body .pick-date .DatePicker {
+	width: 100%;
+	text-align: center;
+}
+
+.reserve-body .pick-date .calendar {
+	width: 87% !important;
 	height: 45px;
 	background: #ffffff;
 	border: 2px solid #00b2ff;
 	border-radius: 3px;
+	font-size: 16px;
+	font-weight: 500;
 }
 
-.reserve-body .pick-date input::placeholder {
+.reserve-body .pick-date .calendar::placeholder {
 	font-weight: 500;
 	padding-left: 10px;
+	font-size: 16px;
 }
 
 .reserve-body .cottage-container {

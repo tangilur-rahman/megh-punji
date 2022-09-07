@@ -1,4 +1,8 @@
 // external components
+import DatePicker, {
+	utils
+} from "@amir04lm26/react-modern-calendar-date-picker";
+import "@amir04lm26/react-modern-calendar-date-picker/lib/DatePicker.css";
 import { useEffect, useRef, useState } from "react";
 
 // internal components
@@ -16,6 +20,9 @@ const Booking = ({ setBookingT }) => {
 	// get selected night
 	const [detailsT, setDetailsT] = useState("");
 
+	// pick booking date
+	const [selectedDay, setSelectedDay] = useState(null);
+
 	// for close outside clicked start
 	const myRef = useRef();
 
@@ -32,6 +39,24 @@ const Booking = ({ setBookingT }) => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 	// for close outside clicked end
+
+	// selectedDay format start
+	const formatDate = () => {
+		if (selectedDay) {
+			return `${
+				selectedDay.day.toString().length > 1
+					? selectedDay.day
+					: "0" + selectedDay.day
+			}-${
+				selectedDay.month.toString().length > 1
+					? selectedDay.month
+					: "0" + selectedDay.month
+			}-${selectedDay.year}`;
+		} else {
+			return "";
+		}
+	};
+	// selectedDay format end
 
 	return (
 		<>
@@ -93,7 +118,18 @@ const Booking = ({ setBookingT }) => {
 									<label htmlFor="date">Date:*</label>
 								</td>
 								<td>
-									<input type="number" name="date" id="date" required />
+									{getCottage ? (
+										<DatePicker
+											value={selectedDay}
+											onChange={setSelectedDay}
+											inputPlaceholder="Pick a date..."
+											calendarClassName="responsive-calendar"
+											minimumDate={utils().getToday()}
+											formatInputText={formatDate}
+										/>
+									) : (
+										<input placeholder="Pick a date..." disabled />
+									)}
 								</td>
 							</tr>
 
@@ -102,7 +138,11 @@ const Booking = ({ setBookingT }) => {
 									<label htmlFor="night">Nights:*</label>
 								</td>
 								<td>
-									<NightDropdown getNight={getNight} setNight={setNight} />
+									<NightDropdown
+										getNight={getNight}
+										setNight={setNight}
+										selectedDay={selectedDay}
+									/>
 								</td>
 							</tr>
 							<tr>

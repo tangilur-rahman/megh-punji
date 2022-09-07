@@ -1,4 +1,9 @@
 // external components
+import DatePicker, {
+	utils
+} from "@amir04lm26/react-modern-calendar-date-picker";
+import "@amir04lm26/react-modern-calendar-date-picker/lib/DatePicker.css";
+import { useState } from "react";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import "react-photo-view/dist/react-photo-view.css";
 
@@ -6,6 +11,28 @@ import "react-photo-view/dist/react-photo-view.css";
 import "./Reservation.css";
 
 const Reservation = ({ setBookingT }) => {
+	// pick booking date
+	const [selectedDay, setSelectedDay] = useState(null);
+
+	// selectedDay format start
+	const formatDate = () => {
+		if (selectedDay) {
+			return `${
+				selectedDay.day.toString().length > 1
+					? selectedDay.day
+					: "0" + selectedDay.day
+			}-${
+				selectedDay.month.toString().length > 1
+					? selectedDay.month
+					: "0" + selectedDay.month
+			}-${selectedDay.year}`;
+		} else {
+			return "";
+		}
+	};
+	// selectedDay format end
+
+	// cottageArray Start
 	const cottageArray = [
 		{
 			title: "Meghla",
@@ -45,6 +72,7 @@ const Reservation = ({ setBookingT }) => {
 			]
 		}
 	];
+	// cottageArray end
 
 	return (
 		<>
@@ -60,7 +88,15 @@ const Reservation = ({ setBookingT }) => {
 					<div className="col-11 reserve-body p-0">
 						<div className="pick-date">
 							<label htmlFor="pick-date">Check a Date</label>
-							<input type="text" id="pick-date" placeholder="Pick A Date..." />
+							<DatePicker
+								value={selectedDay}
+								onChange={setSelectedDay}
+								inputPlaceholder="Pick a date..."
+								calendarClassName="responsive-calendar"
+								minimumDate={utils().getToday()}
+								inputClassName="calendar"
+								formatInputText={formatDate}
+							/>
 						</div>
 
 						<div className="cottage-container">
