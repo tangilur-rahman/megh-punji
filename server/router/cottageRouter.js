@@ -88,4 +88,46 @@ cottage.get("/:cottage", async (req, res) => {
 	}
 });
 
+// for searching cottage
+cottage.get("/searching/:date", async (req, res) => {
+	try {
+		const pickedDate = JSON.parse(req.params.date);
+
+		let bookCottage = [];
+
+		const searchingCottage = async (cottage) => {
+			const document = await cottageModel.findOne({ cottage });
+
+			let getValue = null;
+			if (document) {
+				getValue = (() => {
+					for (let i = 0; i < document.booking.length; i++) {
+						for (let j = 0; j < document.booking[i].date.length; j++) {
+							for (let k = 0; k < document.booking[i].date[j].length; k++) {
+								let found =
+									JSON.stringify(document.booking[i].date[j][k]) ===
+									JSON.stringify(pickedDate);
+
+								if (found) {
+									return found;
+								}
+							}
+						}
+					}
+				})();
+			}
+			return getValue;
+		};
+
+		bookCottage.push(await searchingCottage("meghla"));
+		bookCottage.push(await searchingCottage("purbasha"));
+		bookCottage.push(await searchingCottage("rodela"));
+		bookCottage.push(await searchingCottage("tarasha"));
+
+		res.status(200).json(bookCottage);
+	} catch (error) {
+		res.status(500).json({ error: "Server problem, Try again!" });
+	}
+});
+
 module.exports = cottage;

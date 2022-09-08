@@ -3,9 +3,12 @@ import DatePicker, {
 	utils
 } from "@amir04lm26/react-modern-calendar-date-picker";
 import "@amir04lm26/react-modern-calendar-date-picker/lib/DatePicker.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import "react-photo-view/dist/react-photo-view.css";
+// react-toastify
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // internal components
 import "./Reservation.css";
@@ -13,6 +16,9 @@ import "./Reservation.css";
 const Reservation = ({ setBookingT }) => {
 	// pick booking date
 	const [selectedDay, setSelectedDay] = useState(null);
+
+	// fro searching cottage
+	const [searchCot, setSearchCot] = useState([]);
 
 	// selectedDay format start
 	const formatDate = () => {
@@ -32,6 +38,40 @@ const Reservation = ({ setBookingT }) => {
 	};
 	// selectedDay format end
 
+	// for searching cottage start
+
+	useEffect(() => {
+		if (selectedDay) {
+			(async () => {
+				try {
+					const response = await fetch(
+						`/cottage/searching/${JSON.stringify(selectedDay)}`
+					);
+
+					const result = await response.json();
+
+					if (response.status === 200) {
+						setSearchCot(result ? result : []);
+					} else if (response.status === 500) {
+						toast.error(result.error, {
+							position: "top-right",
+							theme: "colored",
+							autoClose: 3000
+						});
+					}
+				} catch (error) {
+					toast.error(error.message, {
+						position: "top-right",
+						theme: "colored",
+						autoClose: 3000
+					});
+				}
+			})();
+		}
+	}, [selectedDay]);
+
+	// for searching cottage end
+
 	// cottageArray Start
 	const cottageArray = [
 		{
@@ -41,7 +81,8 @@ const Reservation = ({ setBookingT }) => {
 				"/Meghla/Meghla_1.jpg",
 				"/Meghla/Meghla_2.jpg",
 				"/Meghla/Meghla_3.jpg"
-			]
+			],
+			search: searchCot[0]
 		},
 		{
 			title: "Purbasha",
@@ -50,7 +91,8 @@ const Reservation = ({ setBookingT }) => {
 				"/Purbasha/Purbasha_1.jpg",
 				"/Purbasha/Purbasha_2.jpg",
 				"/Purbasha/Purbasha_3.jpg"
-			]
+			],
+			search: searchCot[1]
 		},
 
 		{
@@ -60,7 +102,8 @@ const Reservation = ({ setBookingT }) => {
 				"/Rodela/Rodela_1.jpg",
 				"/Rodela/Rodela_2.jpg",
 				"/Rodela/Rodela_3.jpg"
-			]
+			],
+			search: searchCot[2]
 		},
 		{
 			title: "Tarasha",
@@ -69,7 +112,8 @@ const Reservation = ({ setBookingT }) => {
 				"/Tarasha/Tarasha_1.jpg",
 				"/Tarasha/Tarasha_2.jpg",
 				"/Tarasha/Tarasha_3.jpg"
-			]
+			],
+			search: searchCot[3]
 		}
 	];
 	// cottageArray end
@@ -105,7 +149,6 @@ const Reservation = ({ setBookingT }) => {
 									return (
 										<div className="cottage" key={index}>
 											<h4>{value.title}</h4>
-
 											<PhotoProvider>
 												{value.array &&
 													value.array.map((item, item_key) => {
@@ -132,13 +175,17 @@ const Reservation = ({ setBookingT }) => {
 												<span>{value.rent}৳</span>
 											</h6>
 
-											<button
-												type="button"
-												className="btn btn-success"
-												onClick={() => setBookingT(true)}
-											>
-												Reserve
-											</button>
+											{value.search ? (
+												<span id="not-available">Not Available</span>
+											) : (
+												<button
+													type="button"
+													className="btn btn-success"
+													onClick={() => setBookingT(true)}
+												>
+													Reserve
+												</button>
+											)}
 										</div>
 									);
 								})}

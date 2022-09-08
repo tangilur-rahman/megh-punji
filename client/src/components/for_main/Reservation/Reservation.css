@@ -165,6 +165,12 @@
 	transition: all 0.5s;
 }
 
+.reserve-body .cottage-container .cottage #not-available {
+	color: rgb(255, 0, 0);
+	font-weight: 500;
+	text-shadow: 0 0 10px rgb(127, 93, 93);
+}
+
 /* responsive start  */
 
 @media screen and (max-width: 1200px) {
