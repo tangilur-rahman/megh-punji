@@ -1,0 +1,57 @@
+#error-row-container {
+	background-image: url("./not-found-img.jpg");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-position: top center;
+	width: 100vw;
+	height: 100vh;
+	background-color: white;
+}
+
+#error-col-container {
+	display: flex;
+	justify-content: center;
+	position: absolute;
+	bottom: 40px;
+}
+
+#error-navlink {
+	text-decoration: none;
+	color: #1b2e35;
+}
+
+#error-navlink span {
+	font-weight: 700;
+	font-size: 30px;
+}
+
+/* for hover link  */
+#error-link .hover-link::after {
+	content: "";
+	display: block;
+	width: 0;
+	height: 5px;
+	background: #007f5f;
+	transition: width 0.3s;
+}
+
+#error-link .hover-link:hover::after {
+	width: 100%;
+	transition: width 0.3s;
+}
+
+@media screen and (max-width: 1000px) {
+	#error-col-container {
+		bottom: 0px;
+	}
+}
+
+@media screen and (max-width: 400px) {
+	#error-row-container {
+		background-size: 100% 85%;
+	}
+
+	#error-col-container {
+		bottom: 15px;
+	}
+}
