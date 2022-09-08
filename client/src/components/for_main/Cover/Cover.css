@@ -48,11 +48,12 @@
 .cover-container .cover-right ul p {
 	margin: 0;
 	text-align: center;
-	font-weight: 500;
+	font-weight: 600;
 	font-size: 20px;
 	line-height: 24px;
 	color: #ffc700;
 	margin: 10px 20px 10px 0;
+	text-shadow: 0 0 5px black;
 }
 
 .cover-container .cover-right ul li {
