@@ -4,6 +4,9 @@ import DatePicker, {
 } from "@amir04lm26/react-modern-calendar-date-picker";
 import "@amir04lm26/react-modern-calendar-date-picker/lib/DatePicker.css";
 import { useEffect, useRef, useState } from "react";
+// react-toastify
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // internal components
 import "./Booking.css";
@@ -11,17 +14,18 @@ import CottageDropdown from "./CottageDropdown/CottageDropdown";
 import NightDropdown from "./NightDropdown/NightDropdown";
 
 const Booking = ({ setBookingT }) => {
-	// get selected cottage
+	// for get input-fields values
 	const [getCottage, setCottage] = useState("");
-
-	// get selected night
+	const [getName, setName] = useState("");
+	const [getPhone, setPhone] = useState("");
+	const [getEmail, setEmail] = useState("");
 	const [getNight, setNight] = useState("");
-
-	// get selected night
-	const [detailsT, setDetailsT] = useState("");
 
 	// pick booking date
 	const [selectedDay, setSelectedDay] = useState(null);
+
+	// get selected night
+	const [detailsT, setDetailsT] = useState("");
 
 	// for close outside clicked start
 	const myRef = useRef();
@@ -58,6 +62,59 @@ const Booking = ({ setBookingT }) => {
 	};
 	// selectedDay format end
 
+	// submit on database start
+	const submitHandler = async () => {
+		try {
+			if (!(getCottage && getName && getPhone && selectedDay && getNight)) {
+				toast("Fill-up all fields", {
+					position: "top-right",
+					theme: "dark",
+					autoClose: 3000
+				});
+			} else {
+				const response = await fetch("/cottage/submit", {
+					method: "POST",
+					body: JSON.stringify({
+						getCottage,
+						getName,
+						getPhone,
+						getEmail,
+						selectedDay,
+						getNight
+					}),
+					headers: { "Content-Type": "application/json" }
+				});
+
+				const result = await response.json();
+
+				if (response.status === 200) {
+					toast.success(result.message, {
+						position: "top-right",
+						theme: "colored",
+						autoClose: 2500
+					});
+					setTimeout(() => {
+						setBookingT(false);
+						setDetailsT(false);
+					}, 3000);
+				} else if (response.status === 500) {
+					toast.error(result.error, {
+						position: "top-right",
+						theme: "colored",
+						autoClose: 3000
+					});
+				}
+			}
+		} catch (error) {
+			toast.error(error.message, {
+				position: "top-right",
+				theme: "colored",
+				autoClose: 3000
+			});
+		}
+	};
+	// submit on database end
+
 	return (
 		<>
 			<div className=" row m-0 booking-container">
@@ -91,7 +148,13 @@ const Booking = ({ setBookingT }) => {
 									<label htmlFor="name">Full Name:*</label>
 								</td>
 								<td>
-									<input type="text" name="name" id="name" required />
+									<input
+										type="text"
+										id="name"
+										required
+										onChange={(e) => setName(e.target.value)}
+										value={getName}
+									/>
 								</td>
 							</tr>
 
@@ -100,7 +163,13 @@ const Booking = ({ setBookingT }) => {
 									<label htmlFor="phone">Phone No:*</label>
 								</td>
 								<td>
-									<input type="number" name="phone" id="phone" required />
+									<input
+										type="number"
+										id="phone"
+										required
+										onChange={(e) => setPhone(e.target.value)}
+										value={getPhone}
+									/>
 								</td>
 							</tr>
 
@@ -109,7 +178,13 @@ const Booking = ({ setBookingT }) => {
 									<label htmlFor="email">Email:</label>
 								</td>
 								<td>
-									<input type="email" name="email" id="email" required />
+									<input
+										type="email"
+										id="email"
+										required
+										onChange={(e) => setEmail(e.target.value)}
+										value={getEmail}
+									/>
 								</td>
 							</tr>
 
@@ -128,7 +203,7 @@ const Booking = ({ setBookingT }) => {
 											formatInputText={formatDate}
 										/>
 									) : (
-										<input placeholder="Pick a date..." disabled />
+										<input placeholder="Pick a date..." disabled readOnly />
 									)}
 								</td>
 							</tr>
@@ -148,7 +223,11 @@ const Booking = ({ setBookingT }) => {
 							<tr>
 								<td></td>
 								<td>
-									<button type="button" className="btn btn-success">
+									<button
+										type="button"
+										className="btn btn-success"
+										onClick={submitHandler}
+									>
 										Submit Request
 									</button>
 								</td>

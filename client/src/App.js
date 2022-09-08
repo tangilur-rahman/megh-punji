@@ -1,5 +1,6 @@
 // external components
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 // own pages
 import Dashboard from "./pages/Dashboard/Dashboard";
@@ -16,6 +17,7 @@ function App() {
 					<Route path="dashboard" element={<Dashboard />} />
 				</Routes>
 			</BrowserRouter>
+			<ToastContainer />
 		</>
 	);
 }

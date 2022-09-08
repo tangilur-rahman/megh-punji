@@ -125,7 +125,6 @@ const Reservation = ({ setBookingT }) => {
 															</PhotoView>
 														);
 													})}
-												{console.log(value.array)}
 											</PhotoProvider>
 
 											<h6>

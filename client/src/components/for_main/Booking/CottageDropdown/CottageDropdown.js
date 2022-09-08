@@ -33,7 +33,6 @@ const CottageDropdown = ({ getCottage, setCottage }) => {
 					readOnly
 					id="cottage"
 					value={displayCottage()}
-					required
 				/>
 				<div className="option">
 					<div onClick={() => setCottage("meghla")}>
