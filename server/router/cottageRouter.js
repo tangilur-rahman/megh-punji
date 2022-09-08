@@ -7,9 +7,8 @@ const cottage = express.Router();
 // internal modules
 const cottageModel = require("./../models/cottageModel");
 
+// for create booking
 cottage.post("/submit", async (req, res) => {
-	console.log(req.body);
-
 	try {
 		const { getCottage, getName, getPhone, getEmail, selectedDay, getNight } =
 			req.body;
@@ -60,6 +59,27 @@ cottage.post("/submit", async (req, res) => {
 
 			await createCottage.save();
 			res.status(200).json({ message: `${getName}, Welcome To Sajek` });
+		}
+	} catch (error) {
+		res.status(500).json({ error: error.message });
+	}
+});
+
+// for fetching booking
+cottage.get("/:cottage", async (req, res) => {
+	try {
+		const findCottage = await cottageModel.findOne({
+			cottage: req.params.cottage
+		});
+
+		if (findCottage) {
+			const collectDate = [];
+
+			findCottage.booking.map((value) => {
+				collectDate.push(value.date);
+			});
+
+			res.status(200).json(collectDate);
 		}
 	} catch (error) {
 		res.status(500).json({ error: error.message });

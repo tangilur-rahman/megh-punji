@@ -24,6 +24,9 @@ const Booking = ({ setBookingT }) => {
 	// pick booking date
 	const [selectedDay, setSelectedDay] = useState(null);
 
+	// fetching date for disabled
+	const [bookedDate, setBookedDate] = useState([]);
+
 	// get selected night
 	const [detailsT, setDetailsT] = useState("");
 
@@ -34,6 +37,7 @@ const Booking = ({ setBookingT }) => {
 		if (!myRef.current?.contains(e.target)) {
 			setBookingT(false);
 			setDetailsT(false);
+			setCottage("");
 		}
 	};
 
@@ -96,6 +100,7 @@ const Booking = ({ setBookingT }) => {
 					setTimeout(() => {
 						setBookingT(false);
 						setDetailsT(false);
+						setCottage("");
 					}, 3000);
 				} else if (response.status === 500) {
 					toast.error(result.error, {
@@ -114,6 +119,37 @@ const Booking = ({ setBookingT }) => {
 		}
 	};
 	// submit on database end
+
+	// fetching data for specific cottage start
+	useEffect(() => {
+		if (getCottage) {
+			setBookedDate([]);
+			(async () => {
+				try {
+					const response = await fetch(`/cottage/${getCottage}`);
+
+					const result = await response.json();
+
+					if (response.status === 200) {
+						setBookedDate(result ? result : []);
+					} else if (response.status === 500) {
+						toast.error(result.error, {
+							position: "top-right",
+							theme: "colored",
+							autoClose: 3000
+						});
+					}
+				} catch (error) {
+					toast.error(error.message, {
+						position: "top-right",
+						theme: "colored",
+						autoClose: 3000
+					});
+				}
+			})();
+		}
+	}, [getCottage]);
+	// fetching data for specific cottage end
 
 	return (
 		<>
@@ -201,6 +237,7 @@ const Booking = ({ setBookingT }) => {
 											calendarClassName="responsive-calendar"
 											minimumDate={utils().getToday()}
 											formatInputText={formatDate}
+											disabledDays={bookedDate}
 										/>
 									) : (
 										<input placeholder="Pick a date..." disabled readOnly />
