@@ -10,7 +10,7 @@ const cottageModel = require("./../models/cottageModel");
 // for create booking
 cottage.post("/submit", async (req, res) => {
 	try {
-		const { getCottage, getName, getPhone, getEmail, selectedDay, getNight } =
+		const { getCottage, getName, getPhone, getEmail, dateArray, getNight } =
 			req.body;
 
 		// email validate
@@ -38,7 +38,7 @@ cottage.post("/submit", async (req, res) => {
 				name: getName,
 				phone: getPhone,
 				email: getEmail,
-				date: selectedDay,
+				date: dateArray,
 				night: getNight
 			});
 
@@ -52,7 +52,7 @@ cottage.post("/submit", async (req, res) => {
 					name: getName,
 					phone: getPhone,
 					email: getEmail,
-					date: selectedDay,
+					date: dateArray,
 					night: getNight
 				}
 			});
@@ -76,7 +76,9 @@ cottage.get("/:cottage", async (req, res) => {
 			const collectDate = [];
 
 			findCottage.booking.map((value) => {
-				collectDate.push(value.date);
+				value.date.map((result) => {
+					result.map((date) => collectDate.push(date));
+				});
 			});
 
 			res.status(200).json(collectDate);

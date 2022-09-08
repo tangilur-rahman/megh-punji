@@ -26,10 +26,7 @@ const schema = mongoose.Schema(
 					default: ""
 				},
 
-				date: {
-					type: mongoose.SchemaTypes.Mixed,
-					trim: true
-				},
+				date: Array,
 
 				night: {
 					type: Number,

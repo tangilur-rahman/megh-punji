@@ -24,6 +24,8 @@ const Booking = ({ setBookingT }) => {
 	// pick booking date
 	const [selectedDay, setSelectedDay] = useState(null);
 
+	const [dateArray, setDateArray] = useState([]);
+
 	// fetching date for disabled
 	const [bookedDate, setBookedDate] = useState([]);
 
@@ -69,7 +71,7 @@ const Booking = ({ setBookingT }) => {
 	// submit on database start
 	const submitHandler = async () => {
 		try {
-			if (!(getCottage && getName && getPhone && selectedDay && getNight)) {
+			if (!(getCottage && getName && getPhone && dateArray && getNight)) {
 				toast("Fill-up all fields", {
 					position: "top-right",
 					theme: "dark",
@@ -83,7 +85,7 @@ const Booking = ({ setBookingT }) => {
 						getName,
 						getPhone,
 						getEmail,
-						selectedDay,
+						dateArray,
 						getNight
 					}),
 					headers: { "Content-Type": "application/json" }
@@ -150,6 +152,57 @@ const Booking = ({ setBookingT }) => {
 		}
 	}, [getCottage]);
 	// fetching data for specific cottage end
+
+	// add night with date start
+	useEffect(() => {
+		function endDate(date, days) {
+			let result = new Date(date);
+			result.setDate(result.getDate() + days);
+			return result;
+		}
+
+		// eslint-disable-next-line no-extend-native
+		Date.prototype.addDays = function (days) {
+			let date = new Date(this.valueOf());
+			date.setDate(date.getDate() + days);
+			return date;
+		};
+
+		function getDates(startDate, stopDate) {
+			let currentDate = startDate;
+
+			const array = [];
+			while (currentDate <= stopDate) {
+				array.push(new Date(currentDate));
+				currentDate = currentDate.addDays(1);
+			}
+			return array;
+		}
+
+		if (getNight) {
+			const getEndDate = endDate(
+				`${selectedDay.year},${selectedDay.month},${selectedDay.day}`,
+				getNight - 1
+			);
+
+			const getAllDates = getDates(
+				new Date(`${selectedDay.year},${selectedDay.month},${selectedDay.day}`),
+				getEndDate
+			);
+
+			setDateArray([
+				getAllDates.map((value) => {
+					return {
+						day: value.getDate(),
+						month: value.getMonth() + 1,
+						year: value.getFullYear()
+					};
+				})
+			]);
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [getNight]);
+	// add night with date end
 
 	return (
 		<>
