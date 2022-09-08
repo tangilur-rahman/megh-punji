@@ -1,4 +1,4 @@
-.navbar-container {
+.dashboard-container .navbar-container {
 	display: flex;
 	justify-content: center;
 	background-color: #0e51ff;
@@ -7,17 +7,17 @@
 	padding: 5px 0 7px 0;
 }
 
-.navbar-container .nav-wrapper {
+.dashboard-container .navbar-container .nav-wrapper {
 	display: flex;
 	justify-content: space-between;
 }
 
-.nav-wrapper .nav-left {
+.dashboard-container .nav-wrapper .nav-left {
 	width: 120px;
 	transform: scale(1.2);
 }
 
-.nav-right {
+.dashboard-container .nav-right {
 	display: flex;
 	justify-content: flex-end;
 	flex-grow: 1;
@@ -25,7 +25,7 @@
 }
 
 /* for desktop version  */
-.nav-wrapper .nav-right #desktop {
+.dashboard-container .nav-wrapper .nav-right #desktop {
 	display: flex;
 	list-style-type: none;
 	align-items: center;
@@ -33,7 +33,7 @@
 	margin: 8px 0 0 0 !important;
 }
 
-.nav-wrapper .nav-right #desktop li {
+.dashboard-container .nav-wrapper .nav-right #desktop li {
 	margin-right: 35px;
 	font-weight: 500;
 	letter-spacing: 1px;
@@ -44,12 +44,12 @@
 	cursor: pointer;
 }
 
-.nav-wrapper .nav-right #desktop li:last-child {
+.dashboard-container .nav-wrapper .nav-right #desktop li:last-child {
 	margin-right: 0px;
 }
 
 /* for mobile version  */
-.nav-wrapper .nav-right #mobile {
+.dashboard-container .nav-wrapper .nav-right #mobile {
 	position: absolute;
 	top: 80px;
 	background-color: #0e51ff;
@@ -62,7 +62,7 @@
 	z-index: 999;
 }
 
-.nav-wrapper .nav-right #mobile li {
+.dashboard-container .nav-wrapper .nav-right #mobile li {
 	font-weight: 500;
 	letter-spacing: 1px;
 	word-spacing: 2px;
@@ -88,7 +88,7 @@
 	}
 }
 
-.nav-wrapper .nav-right .menu-icon {
+.dashboard-container .nav-wrapper .nav-right .menu-icon {
 	display: flex;
 	align-items: center;
 	text-shadow: 5px 5px 4px rgb(13, 10, 10);
@@ -98,13 +98,21 @@
 	display: none;
 }
 
+.dashboard-container .nav-wrapper .nav-right #edit-profile {
+	font-size: 18px;
+}
+
+.dashboard-container .nav-wrapper .nav-right #edit-profile:hover {
+	transform: scale(0.95);
+}
+
 /* responsible start  */
-@media screen and (max-width: 720px) {
-	.nav-wrapper .nav-right #desktop {
+@media screen and (max-width: 850px) {
+	.dashboard-container .nav-wrapper .nav-right #desktop {
 		display: none;
 	}
 
-	.nav-wrapper .nav-right .menu-icon {
+	.dashboard-container .nav-wrapper .nav-right .menu-icon {
 		display: inline-block;
 	}
 }

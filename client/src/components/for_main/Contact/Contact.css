@@ -125,6 +125,7 @@
 	align-self: center;
 	text-align: center;
 	padding: 5px 0;
+	text-shadow: 5px 5px 4px rgb(13, 10, 10);
 }
 
 .contact-container .contact-us .footer-container {
