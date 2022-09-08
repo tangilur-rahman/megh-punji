@@ -4,10 +4,14 @@ import { useState } from "react";
 // internal components
 import "./NightDropdown.css";
 
-const NightDropdown = ({ getNight, setNight, selectedDay }) => {
+const NightDropdown = ({ getNight, setNight, selectedDay, aviNight }) => {
 	const [nightDrop, setNightDrop] = useState("");
 
-	const nightArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+	const nightArray = [];
+
+	for (let index = 1; index <= aviNight; index++) {
+		nightArray.push(index);
+	}
 
 	return (
 		<>

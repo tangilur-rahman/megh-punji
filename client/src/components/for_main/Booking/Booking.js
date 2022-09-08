@@ -29,6 +29,9 @@ const Booking = ({ setBookingT }) => {
 	// fetching date for disabled
 	const [bookedDate, setBookedDate] = useState([]);
 
+	// for available night count
+	const [aviNight, setAviNight] = useState("");
+
 	// get selected night
 	const [detailsT, setDetailsT] = useState("");
 
@@ -204,6 +207,52 @@ const Booking = ({ setBookingT }) => {
 	}, [getNight]);
 	// add night with date end
 
+	// for night pick until disable date start
+	useEffect(() => {
+		if (bookedDate && selectedDay) {
+			const getDates = [];
+
+			bookedDate.map((value) =>
+				getDates.push(new Date(`${value.year},${value.month},${value.day}`))
+			);
+
+			const filterDate = getDates.filter(
+				(value) =>
+					new Date(
+						`${selectedDay.year},${selectedDay.month},${selectedDay.day}`
+					) < value
+			);
+
+			const minimumDate = new Date(Math.min.apply(null, filterDate));
+
+			if (
+				minimumDate.getTime() >
+				new Date(
+					`${selectedDay.year},${selectedDay.month},${selectedDay.day}`
+				).getTime()
+			) {
+				const diffTime = Math.abs(
+					minimumDate -
+						new Date(
+							`${selectedDay.year},${selectedDay.month},${selectedDay.day}`
+						)
+				);
+				const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+				if (diffDays) {
+					console.log(diffDays);
+
+					diffDays.toString().length >= 10
+						? setAviNight(10)
+						: setAviNight(diffDays);
+				}
+			} else {
+				setAviNight(10);
+			}
+		}
+	}, [bookedDate, selectedDay]);
+	// for night pick until disable date end
+
 	return (
 		<>
 			<div className=" row m-0 booking-container">
@@ -307,6 +356,7 @@ const Booking = ({ setBookingT }) => {
 										getNight={getNight}
 										setNight={setNight}
 										selectedDay={selectedDay}
+										aviNight={aviNight}
 									/>
 								</td>
 							</tr>
