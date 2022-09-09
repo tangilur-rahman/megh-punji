@@ -7,6 +7,5 @@
 }
 
 .main-page-container#active {
-	filter: blur(1.5px);
-	filter: brightness(65%);
+	filter: brightness(65%) blur(1px);
 }
