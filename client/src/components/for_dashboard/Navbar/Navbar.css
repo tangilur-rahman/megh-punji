@@ -41,6 +41,8 @@
 	object-fit: cover;
 	object-position: center;
 	margin-right: 7px;
+	border-radius: 50%;
+	border: 2.5px solid rgb(234, 226, 226);
 }
 
 .dashboard-container .nav-right .admin-profile h5 {
