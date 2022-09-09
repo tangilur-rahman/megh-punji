@@ -1,12 +1,13 @@
 // external components
 import dateFormat from "dateformat";
 import { useEffect, useRef, useState } from "react";
+import { toast } from "react-toastify";
 
 // internal components
 import CngProfileImg from "./CngProfileImg/CngProfileImg";
 import "./ProfileEdit.css";
 
-const ProfileEdit = ({ getAdmin, setProfileT }) => {
+const ProfileEdit = ({ getAdmin, setProfileT, setUpdateAdmin }) => {
 	// for toggle edit option
 	const [editT, setEditT] = useState(false);
 	const [changeProfileT, setChangeProfileT] = useState(false);
@@ -55,7 +56,61 @@ const ProfileEdit = ({ getAdmin, setProfileT }) => {
 	// for preview image end
 
 	// submit handler start
-	const submitHandler = () => {};
+	const submitHandler = async () => {
+		if (!(getName || getPhone || getNewPassword)) {
+			toast("Nothing have to submit!", {
+				position: "top-right",
+				theme: "dark",
+				autoClose: 3000
+			});
+		} else {
+			try {
+				const response = await fetch("/admin/update", {
+					method: "PUT",
+					body: JSON.stringify({
+						getName,
+						getPhone,
+						getCpassword,
+						getNewPassword
+					}),
+					headers: { "Content-Type": "application/json" }
+				});
+
+				const result = await response.json();
+
+				if (response.status === 200) {
+					toast.success(result.message, {
+						position: "top-right",
+						theme: "colored",
+						autoClose: 2000
+					});
+					setTimeout(() => {
+						setProfileT(false);
+						setEditT(false);
+						setUpdateAdmin(Date.now());
+					}, 3000);
+				} else if (response.status === 400) {
+					toast(result.error, {
+						position: "top-right",
+						theme: "dark",
+						autoClose: 3000
+					});
+				} else if (result.error) {
+					toast.error(result.error, {
+						position: "top-right",
+						theme: "colored",
+						autoClose: 3000
+					});
+				}
+			} catch (error) {
+				toast.error(error.message, {
+					position: "top-right",
+					theme: "colored",
+					autoClose: 3000
+				});
+			}
+		}
+	};
 	// submit handler end
 
 	// for displaying phone-number start
@@ -174,7 +229,7 @@ const ProfileEdit = ({ getAdmin, setProfileT }) => {
 										<input
 											value={dateFormat(
 												getAdmin.updatedAt,
-												"mmm dS, yyyy, h:MM:ss TT"
+												"mmm dS, yyyy, h:MM TT"
 											)}
 											readOnly
 										/>

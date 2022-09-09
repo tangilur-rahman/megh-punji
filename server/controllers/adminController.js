@@ -39,4 +39,55 @@ const loginAdmin = async (req, res) => {
 	}
 };
 
-module.exports = { loginAdmin };
+const updateAdmin = async (req, res) => {
+	try {
+		const { getName, getPhone, getCpassword, getNewPassword } = req.body;
+
+		// check password
+		const comparePassword = await bcrypt.compare(
+			getCpassword,
+			req.currentUser.password
+		);
+
+		if (!comparePassword) {
+			throw new Error("Current password invalid!");
+		}
+
+		if (getName) {
+			req.currentUser.name = getName;
+		}
+
+		if (getPhone) {
+			req.currentUser.phone = getPhone;
+		}
+
+		if (getNewPassword) {
+			function validatePassword(password) {
+				if (password.length < 8) {
+					throw Error("Password must be at least 8 characters.");
+				}
+				if (password.search(/[a-z]/i) < 0) {
+					throw Error("Password must contain at least one letter.");
+				}
+				if (password.search(/[0-9]/) < 0) {
+					throw Error("Password must contain at least one digit.");
+				}
+				return true;
+			}
+
+			const check = validatePassword(getNewPassword);
+
+			if (check) {
+				const hashPassword = await bcrypt.hash(getNewPassword, 10);
+				req.currentUser.password = hashPassword;
+			}
+		}
+
+		req.currentUser.save();
+		res.status(200).json({ message: "Profile update successfully" });
+	} catch (error) {
+		res.status(500).json({ error: error.message });
+	}
+};
+
+module.exports = { loginAdmin, updateAdmin };
