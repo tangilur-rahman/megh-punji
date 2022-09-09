@@ -35,54 +35,61 @@ const Login = () => {
 	};
 
 	const submitHandler = async () => {
-		const userObject = {
-			phone,
-			password
-		};
-
-		try {
-			const response = await fetch("/admin/login", {
-				method: "POST",
-				body: JSON.stringify(userObject),
-				headers: { "Content-Type": "application/json" }
+		if (!(phone && password)) {
+			toast("Fill-up all fields!", {
+				position: "top-right",
+				theme: "dark",
+				autoClose: 3000
 			});
-
-			const result = await response.json();
-
-			if (response.status === 200) {
-				toast.success(result.message, {
-					position: "top-right",
-					theme: "colored",
-					autoClose: 2000
+		} else {
+			const userObject = {
+				phone,
+				password
+			};
+			try {
+				const response = await fetch("/admin/login", {
+					method: "POST",
+					body: JSON.stringify(userObject),
+					headers: { "Content-Type": "application/json" }
 				});
-				setTimeout(() => {
-					return Navigate("/admin/dashboard");
-				}, 3000);
 
-				// for clear fields
-				setUser({
-					phone: "",
-					password: ""
-				});
-			} else if (response.status === 400) {
-				toast(result.error, {
-					position: "top-right",
-					theme: "dark",
-					autoClose: 3000
-				});
-			} else if (result.error) {
-				toast.error(result.error, {
+				const result = await response.json();
+
+				if (response.status === 200) {
+					toast.success(result.message, {
+						position: "top-right",
+						theme: "colored",
+						autoClose: 2000
+					});
+					setTimeout(() => {
+						return Navigate("/admin/dashboard");
+					}, 3000);
+
+					// for clear fields
+					setUser({
+						phone: "",
+						password: ""
+					});
+				} else if (response.status === 400) {
+					toast(result.error, {
+						position: "top-right",
+						theme: "dark",
+						autoClose: 3000
+					});
+				} else if (result.error) {
+					toast.error(result.error, {
+						position: "top-right",
+						theme: "colored",
+						autoClose: 3000
+					});
+				}
+			} catch (error) {
+				toast.error(error.message, {
 					position: "top-right",
 					theme: "colored",
 					autoClose: 3000
 				});
 			}
-		} catch (error) {
-			toast.error(error.message, {
-				position: "top-right",
-				theme: "colored",
-				autoClose: 3000
-			});
 		}
 	};
 
