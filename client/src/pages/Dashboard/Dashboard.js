@@ -1,5 +1,7 @@
 // external components
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 // internal components
 import Display from "../../components/for_dashboard/Display/Display";
@@ -8,23 +10,87 @@ import ProfileEdit from "../../components/for_dashboard/ProfileEdit/ProfileEdit"
 import "./Dashboard.css";
 
 const Dashboard = () => {
+	// for redirect login-page
+	const Navigate = useNavigate();
+
+	// for loading until fetching complete
+	const [isLoading, setIsLoading] = useState(true);
+
 	// for toggle profile-edit
 	const [profileT, setProfileT] = useState("");
 
+	// for update admin profile
+	const [updateAdmin, setUpdateAdmin] = useState("");
+
+	// for get admin
+	const [getAdmin, setAdmin] = useState("");
+
+	useEffect(() => {
+		(async () => {
+			try {
+				const response = await fetch("/admin");
+
+				const result = await response.json();
+
+				if (result.error) {
+					toast.error(result.error, {
+						position: "top-right",
+						theme: "colored",
+						autoClose: 3000
+					});
+					return Navigate("/admin/login");
+				} else {
+					setAdmin(result);
+					setIsLoading(false);
+				}
+			} catch (error) {
+				toast.error(error.message, {
+					position: "top-right",
+					theme: "colored",
+					autoClose: 3000
+				});
+			}
+		})();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [updateAdmin]);
+
 	return (
 		<>
-			<div className="container-fluid p-0">
-				<div
-					className="row m-0 dashboard-container"
-					id={profileT ? "active" : ""}
-				>
-					<div className="col p-0">
-						<Navbar profileT={profileT} setProfileT={setProfileT} />
-						<Display />
-					</div>
+			{isLoading ? (
+				<div className="loading-animation">
+					<div className="obj"></div>
+					<div className="obj"></div>
+					<div className="obj"></div>
+					<div className="obj"></div>
+					<div className="obj"></div>
+					<div className="obj"></div>
+					<div className="obj"></div>
+					<div className="obj"></div>
 				</div>
-				{profileT && <ProfileEdit setProfileT={setProfileT} />}
-			</div>
+			) : (
+				<div className="container-fluid p-0">
+					<div
+						className="row m-0 dashboard-container"
+						id={profileT ? "active" : ""}
+					>
+						<div className="col p-0">
+							<Navbar
+								getAdmin={getAdmin}
+								profileT={profileT}
+								setProfileT={setProfileT}
+							/>
+							<Display />
+						</div>
+					</div>
+					{profileT && (
+						<ProfileEdit
+							getAdmin={getAdmin}
+							setProfileT={setProfileT}
+							setUpdateAdmin={setUpdateAdmin}
+						/>
+					)}
+				</div>
+			)}
 		</>
 	);
 };

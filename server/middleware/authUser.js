@@ -16,6 +16,7 @@ const authUser = async (req, res, next) => {
 		});
 
 		if (document) {
+			req.currentUser = document;
 			next();
 		} else {
 			res.status(500).json({ error: "Authentication Failed!" });

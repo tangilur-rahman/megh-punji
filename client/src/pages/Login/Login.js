@@ -41,7 +41,7 @@ const Login = () => {
 		};
 
 		try {
-			const response = await fetch("/login", {
+			const response = await fetch("/admin/login", {
 				method: "POST",
 				body: JSON.stringify(userObject),
 				headers: { "Content-Type": "application/json" }

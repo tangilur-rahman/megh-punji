@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 // internal components
 import "./Navbar.css";
 
-const Navbar = ({ profileT, setProfileT }) => {
+const Navbar = ({ getAdmin, profileT, setProfileT }) => {
 	// for menu-bar toggle
 	const [menuT, setMenuT] = useState("");
 
@@ -37,13 +37,13 @@ const Navbar = ({ profileT, setProfileT }) => {
 							onClick={() => setProfileT(!profileT)}
 						>
 							<img
-								src="/assets/profile-img/default-img.png"
+								src={`/assets/profile-img/${getAdmin.profile_img}`}
 								alt="admin-profile"
 								className="img-fluid"
 							/>
 							<div className="admin-info">
-								<h5>Tangilur Rahman</h5>
-								<p>01750928575</p>
+								<h5>{getAdmin.name}</h5>
+								<p>{getAdmin.phone}</p>
 							</div>
 						</div>
 						<div className="menu-icon">

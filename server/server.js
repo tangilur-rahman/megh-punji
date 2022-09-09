@@ -6,7 +6,7 @@ require("dotenv").config();
 
 // internal modules
 const cottageRouter = require("./router/cottageRouter");
-const loginRouter = require("./router/loginRouter");
+const adminRouter = require("./router/adminRouter");
 
 // express server
 const app = express();
@@ -20,7 +20,7 @@ app.use(cookie());
 
 // routers
 app.use("/cottage", cottageRouter);
-app.use("/login", loginRouter);
+app.use("/admin", adminRouter);
 
 // submit on remote server start
 if (process.env.NODE_ENV == "production") {

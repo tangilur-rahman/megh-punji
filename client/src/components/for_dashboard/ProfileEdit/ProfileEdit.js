@@ -1,11 +1,12 @@
 // external components
+import dateFormat from "dateformat";
 import { useEffect, useRef, useState } from "react";
 
 // internal components
 import CngProfileImg from "./CngProfileImg/CngProfileImg";
 import "./ProfileEdit.css";
 
-const ProfileEdit = ({ setProfileT }) => {
+const ProfileEdit = ({ getAdmin, setProfileT }) => {
 	// for toggle edit option
 	const [editT, setEditT] = useState(false);
 	const [changeProfileT, setChangeProfileT] = useState(false);
@@ -57,6 +58,18 @@ const ProfileEdit = ({ setProfileT }) => {
 	const submitHandler = () => {};
 	// submit handler end
 
+	// for displaying phone-number start
+	const displayValue = () => {
+		if (editT) {
+			return getPhone;
+		} else if (getAdmin.phone) {
+			return "+88 " + getAdmin.phone;
+		} else {
+			return "Null";
+		}
+	};
+	// for displaying phone-number end
+
 	return (
 		<>
 			<div
@@ -74,7 +87,7 @@ const ProfileEdit = ({ setProfileT }) => {
 							<div className="curr-user-profile">
 								<span className="img-wrapper">
 									<img
-										src="/assets/profile-img/default-img.png"
+										src={`/assets/profile-img/${getAdmin.profile_img}`}
 										alt="profile-img"
 										className={editT ? "img-fluid" : "img-fluid animation"}
 									/>
@@ -97,11 +110,29 @@ const ProfileEdit = ({ setProfileT }) => {
 									<span className={editT ? "outline-style" : ""}>
 										Name :&nbsp;
 										<input
-											value={getName}
+											value={editT ? getName : getAdmin.name}
 											readOnly={editT ? false : true}
 											onChange={(event) => setName(event.target.value)}
 											style={{ maxWidth: "200px" }}
 										/>
+									</span>
+
+									<span id={editT ? "phone-number" : ""}>
+										<label htmlFor="phone">
+											Phone : &nbsp; {editT && <h6>+88</h6>}
+										</label>
+
+										<form style={{ display: "inline-block" }}>
+											<input
+												type={editT ? "number" : "text"}
+												name="phone"
+												id="phone"
+												autoComplete="off"
+												value={displayValue()}
+												readOnly={editT ? false : true}
+												onChange={(event) => setPhone(event.target.value)}
+											/>
+										</form>
 									</span>
 
 									{editT && (
@@ -140,25 +171,13 @@ const ProfileEdit = ({ setProfileT }) => {
 
 									<span title="last-updated">
 										Updated:&nbsp;
-										<input value={new Date()} readOnly />
-									</span>
-
-									<span id={editT ? "phone-number" : ""}>
-										<label htmlFor="phone">
-											Phone : &nbsp; {editT && <h6>+88</h6>}
-										</label>
-
-										<form style={{ display: "inline-block" }}>
-											<input
-												type={editT ? "number" : "text"}
-												name="phone"
-												id="phone"
-												autoComplete="off"
-												value={getPhone}
-												readOnly={editT ? false : true}
-												onChange={(event) => setPhone(event.target.value)}
-											/>
-										</form>
+										<input
+											value={dateFormat(
+												getAdmin.updatedAt,
+												"mmm dS, yyyy, h:MM:ss TT"
+											)}
+											readOnly
+										/>
 									</span>
 
 									{editT && (

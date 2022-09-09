@@ -1,15 +1,12 @@
 // external modules
-const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-// sub-router
-const login = express.Router();
-
 // internal modules
-const adminModel = require("./../models/adminModel");
+const adminModel = require("../models/adminModel");
 
-login.post("/", async (req, res) => {
+// for admin login
+const loginAdmin = async (req, res) => {
 	const { phone, password } = req.body;
 
 	try {
@@ -40,6 +37,6 @@ login.post("/", async (req, res) => {
 	} catch (error) {
 		res.status(500).json({ error: "Invalid Account!" });
 	}
-});
+};
 
-module.exports = login;
+module.exports = { loginAdmin };
