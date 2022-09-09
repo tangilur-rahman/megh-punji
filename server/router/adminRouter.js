@@ -6,7 +6,13 @@ const admin = express.Router();
 
 // internal modules
 const authUser = require("./../middleware/authUser");
-const { loginAdmin, updateAdmin } = require("./../controllers/adminController");
+const {
+	loginAdmin,
+	updateAdmin,
+	chgProfileImg
+} = require("./../controllers/adminController");
+const { multerForImg } = require("./../Config/multerManager");
+const { deleteFile } = require("./../Config/deleteManager");
 
 // for get admin
 admin.get("/", authUser, (req, res) => {
@@ -20,6 +26,17 @@ admin.get("/", authUser, (req, res) => {
 // for admin login
 admin.post("/login", loginAdmin);
 
+// for update admin information
 admin.put("/update", authUser, updateAdmin);
+
+// for update admin profile-img
+const upload = multerForImg("file");
+admin.put(
+	"/profile",
+	authUser,
+	deleteFile,
+	upload.single("file"),
+	chgProfileImg
+);
 
 module.exports = admin;

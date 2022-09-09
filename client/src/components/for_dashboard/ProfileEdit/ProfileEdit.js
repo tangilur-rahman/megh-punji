@@ -319,6 +319,8 @@ const ProfileEdit = ({ getAdmin, setProfileT, setUpdateAdmin }) => {
 						setChangeProfileT={setChangeProfileT}
 						previewImg={previewImg}
 						getFile={getFile}
+						setEditT={setEditT}
+						setUpdateAdmin={setUpdateAdmin}
 					/>
 				)}
 			</div>

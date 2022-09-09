@@ -5,26 +5,28 @@ const path = require("path");
 // for only single-image
 const multerForImg = (filename) => {
 	// File upload folder
-	const UPLOADS_FOLDER = path.resolve("../client/public/uploads/profile-img");
-	// const UPLOADS_FOLDER = "./build/uploads/profile-img";
+	// const UPLOADS_FOLDER = path.resolve(
+	// 	`../client/public/assets/${req.query.folder}`
+	// );
+	// const UPLOADS_FOLDER = `./build/assets/${file_folder}/${file_name}`;
 
 	// define the storage
 	const storage = multer.diskStorage({
 		destination: (req, file, cb) => {
-			cb(null, UPLOADS_FOLDER);
+			cb(null, path.resolve(`../client/public/assets/${req.query.folder}`));
 		},
 		filename: (req, file, cb) => {
-			const fileExt = path.extname(file.originalname);
-			const fileName =
-				file.originalname
-					.replace(fileExt, "")
-					.toLowerCase()
-					.split(" ")
-					.join("-") +
-				"-" +
-				Date.now();
+			// const fileExt = path.extname(file.originalname);
+			// const fileName =
+			// 	file.originalname
+			// 		.replace(fileExt, "")
+			// 		.toLowerCase()
+			// 		.split(" ")
+			// 		.join("-") +
+			// 	"-" +
+			// 	Date.now();
 
-			cb(null, fileName + fileExt);
+			cb(null, req.query.file);
 		}
 	});
 

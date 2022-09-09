@@ -5,7 +5,13 @@ import { toast } from "react-toastify";
 // internal components
 import "./CngProfileImg.css";
 
-const CngProfileImg = ({ setChangeProfileT, previewImg, getFile }) => {
+const CngProfileImg = ({
+	setChangeProfileT,
+	previewImg,
+	getFile,
+	setEditT,
+	setUpdateAdmin
+}) => {
 	// for close when clicked outside start
 	const myUseRef = useRef();
 
@@ -41,16 +47,20 @@ const CngProfileImg = ({ setChangeProfileT, previewImg, getFile }) => {
 	// for inside clicked stop-propagation end
 
 	// submit handler for other-user start
-	const submitHandler = async () => {
+	const submitHandler = async (e) => {
+		e.preventDefault();
 		if (getFile) {
 			const formData = new FormData();
 			formData.append("file", getFile);
 
 			try {
-				const response = await fetch("/profile/upload", {
-					method: "PUT",
-					body: formData
-				});
+				const response = await fetch(
+					"/admin/profile?folder=/profile-img&file=admin-profile.png",
+					{
+						method: "PUT",
+						body: formData
+					}
+				);
 
 				const result = await response.json();
 
@@ -61,24 +71,14 @@ const CngProfileImg = ({ setChangeProfileT, previewImg, getFile }) => {
 						autoClose: 1500
 					});
 					setTimeout(() => {
+						setEditT(false);
 						setChangeProfileT(false);
-					}, 2500);
-				} else if (response.status === 400) {
-					toast(result.message, {
+						setUpdateAdmin(Date.now());
+					}, 3000);
+				} else if (result.error) {
+					toast(result.error, {
 						position: "top-right",
 						theme: "dark",
-						autoClose: 3000
-					});
-				} else if (result.error) {
-					toast.error(result.error, {
-						position: "top-right",
-						theme: "colored",
-						autoClose: 3000
-					});
-				} else {
-					toast.error(result.message, {
-						position: "top-right",
-						theme: "colored",
 						autoClose: 3000
 					});
 				}

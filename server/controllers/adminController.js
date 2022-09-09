@@ -39,6 +39,7 @@ const loginAdmin = async (req, res) => {
 	}
 };
 
+// for update admin information
 const updateAdmin = async (req, res) => {
 	try {
 		const { getName, getPhone, getCpassword, getNewPassword } = req.body;
@@ -84,10 +85,21 @@ const updateAdmin = async (req, res) => {
 		}
 
 		req.currentUser.save();
-		res.status(200).json({ message: "Profile update successfully" });
+		res.status(200).json({ message: "Profile updated successfully" });
 	} catch (error) {
 		res.status(500).json({ error: error.message });
 	}
 };
 
-module.exports = { loginAdmin, updateAdmin };
+// for update admin profile-img
+const chgProfileImg = (req, res) => {
+	try {
+		req.currentUser.profile_img = req.file.filename;
+		req.currentUser.save();
+		res.status(200).json({ message: "Profile image updated successfully" });
+	} catch (error) {
+		res.status(500).json({ error: error.message });
+	}
+};
+
+module.exports = { loginAdmin, updateAdmin, chgProfileImg };
