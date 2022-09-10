@@ -13,7 +13,7 @@ import Virtual from "../../components/for_main/Virtual/Virtual";
 
 import "./MainPage.css";
 
-const MainPage = () => {
+const MainPage = ({ getCottage }) => {
 	// for booking container toggle
 	const [bookingT, setBookingT] = useState("");
 
