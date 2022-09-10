@@ -47,6 +47,7 @@ const RightSidebar = ({ setMenuT, menuT, getCottage, setUpdateCottage }) => {
 				theme: "dark",
 				autoClose: 3000
 			});
+			setEditRight(false);
 		} else {
 			try {
 				const response = await fetch("/cottage", {
