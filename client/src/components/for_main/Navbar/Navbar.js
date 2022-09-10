@@ -34,7 +34,7 @@ const Navbar = () => {
 
 					<div className="nav-right">
 						<ul id={menuT ? "mobile" : "desktop"} ref={myRef}>
-							<li className="hover-link" onClick={() => setMenuT(false)}>
+							<li className="hover-link">
 								<Link
 									activeClass="active"
 									to="gallery-container"
@@ -42,11 +42,12 @@ const Navbar = () => {
 									smooth={true}
 									offset={-100}
 									duration={500}
+									onClick={() => setMenuT(false)}
 								>
 									BRITTO
 								</Link>
 							</li>
-							<li className="hover-link" onClick={() => setMenuT(false)}>
+							<li className="hover-link">
 								<Link
 									activeClass="active"
 									to="virtual-container"
@@ -54,11 +55,12 @@ const Navbar = () => {
 									smooth={true}
 									offset={0}
 									duration={500}
+									onClick={() => setMenuT(false)}
 								>
 									SAJEK
 								</Link>
 							</li>
-							<li className="hover-link" onClick={() => setMenuT(false)}>
+							<li className="hover-link">
 								<Link
 									activeClass="active"
 									to="reservation-container"
@@ -66,11 +68,12 @@ const Navbar = () => {
 									smooth={true}
 									offset={0}
 									duration={500}
+									onClick={() => setMenuT(false)}
 								>
 									BOOK COTTAGE
 								</Link>
 							</li>
-							<li className="hover-link" onClick={() => setMenuT(false)}>
+							<li className="hover-link">
 								<Link
 									activeClass="active"
 									to="contact-container"
@@ -78,6 +81,7 @@ const Navbar = () => {
 									smooth={true}
 									offset={0}
 									duration={500}
+									onClick={() => setMenuT(false)}
 								>
 									CONTACT US
 								</Link>

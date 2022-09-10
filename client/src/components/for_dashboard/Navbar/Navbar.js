@@ -1,28 +1,9 @@
 // external components
-import { useEffect, useRef, useState } from "react";
 
 // internal components
 import "./Navbar.css";
 
-const Navbar = ({ getAdmin, profileT, setProfileT }) => {
-	// for menu-bar toggle
-	const [menuT, setMenuT] = useState("");
-
-	// detect outside click menu-bar hidden start
-	const myRef = useRef();
-
-	const handleClickOutside = (e) => {
-		if (!myRef.current?.contains(e.target)) {
-			setMenuT(false);
-		}
-	};
-
-	useEffect(() => {
-		document.addEventListener("mousedown", handleClickOutside);
-		return () => document.removeEventListener("mousedown", handleClickOutside);
-	}, []);
-	// detect outside click menu-bar hidden start
-
+const Navbar = ({ getAdmin, profileT, setProfileT, menuT, setMenuT }) => {
 	return (
 		<>
 			<div className="row navbar-container m-0">
@@ -47,7 +28,10 @@ const Navbar = ({ getAdmin, profileT, setProfileT }) => {
 							</div>
 						</div>
 						<div className="menu-icon">
-							<i className="fa-solid fa-bars-staggered"></i>
+							<i
+								className="fa-solid fa-bars-staggered"
+								onClick={() => setMenuT(!menuT)}
+							></i>
 						</div>
 					</div>
 				</div>

@@ -76,15 +76,19 @@
 @keyframes menu-animation {
 	0% {
 		height: 0;
+		opacity: 0;
 	}
 	10% {
 		padding: 0;
+		opacity: 0;
 	}
 	80% {
 		padding: 11px 0;
+		opacity: 1;
 	}
 	100% {
 		padding: 9px 0;
+		opacity: 1;
 	}
 }
 

@@ -45,7 +45,7 @@ const Reservation = ({ setBookingT }) => {
 			(async () => {
 				try {
 					const response = await fetch(
-						`/cottage/searching/${JSON.stringify(selectedDay)}`
+						`/booking/searching/${JSON.stringify(selectedDay)}`
 					);
 
 					const result = await response.json();

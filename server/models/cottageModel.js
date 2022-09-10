@@ -3,41 +3,11 @@ const mongoose = require("mongoose");
 
 const schema = mongoose.Schema(
 	{
-		cottage: {
-			type: String,
-			required: true,
-			trim: true
-		},
-		booking: [
-			{
-				name: {
-					type: String,
-					trim: true
-				},
-
-				phone: {
-					type: Number,
-					trim: true
-				},
-
-				email: {
-					type: String,
-					trim: true,
-					default: ""
-				},
-
-				date: Array,
-
-				night: {
-					type: Number,
-					trim: true
-				}
-			}
-		]
+		cottageList: Array
 	},
 	{ timestamps: true }
 );
 
-const cottageModel = mongoose.model("cottage", schema);
+const bookingModel = mongoose.model("cottage", schema);
 
-module.exports = cottageModel;
+module.exports = bookingModel;

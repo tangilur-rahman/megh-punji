@@ -81,7 +81,7 @@ const Booking = ({ setBookingT }) => {
 					autoClose: 3000
 				});
 			} else {
-				const response = await fetch("/cottage/submit", {
+				const response = await fetch("/booking/submit", {
 					method: "POST",
 					body: JSON.stringify({
 						getCottage,
@@ -131,7 +131,7 @@ const Booking = ({ setBookingT }) => {
 			setBookedDate([]);
 			(async () => {
 				try {
-					const response = await fetch(`/cottage/${getCottage}`);
+					const response = await fetch(`/booking/${getCottage}`);
 
 					const result = await response.json();
 
