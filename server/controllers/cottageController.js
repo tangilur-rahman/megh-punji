@@ -11,8 +11,6 @@ const getCottage = async (req, res) => {
 		} else {
 			document = await cottageModel({});
 			document.save();
-			console.log(document);
-
 			res.status(200).json(document);
 		}
 	} catch (error) {
@@ -23,18 +21,20 @@ const getCottage = async (req, res) => {
 // for update cottage
 const updateCottage = async (req, res) => {
 	try {
-		const { _id, cottageName } = req.body;
+		const { _id, cottageNames } = req.body;
+		console.log(cottageNames);
 
-		const document = await cottageModel.findOne({ _id });
+		let document = await cottageModel.findOne({ _id });
 
-		if (document) {
-			document.cottageList = cottageName;
+		if (document.cottages === undefined || document.cottages.length === 0) {
+			cottageNames.map((value) => {
+				document.cottages.push({ name: value });
+			});
 		} else {
-			document = await cottageModel({
-				cottageList: cottageName
+			cottageNames.map((value, index) => {
+				document.cottages[index].name = value;
 			});
 		}
-
 		document.save();
 		res.status(200).json({ message: "updated successfully!" });
 	} catch (error) {

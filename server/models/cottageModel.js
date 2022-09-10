@@ -3,7 +3,13 @@ const mongoose = require("mongoose");
 
 const schema = mongoose.Schema(
 	{
-		cottageList: Array
+		cottages: [
+			{
+				name: String,
+				rent: Number,
+				images: Array
+			}
+		]
 	},
 	{ timestamps: true }
 );

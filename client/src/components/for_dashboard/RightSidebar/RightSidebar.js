@@ -26,21 +26,21 @@ const RightSidebar = ({ setMenuT, menuT, getCottage, setUpdateCottage }) => {
 	const [editRight, setEditRight] = useState("");
 
 	// cottage edit start
-	const [cottage_1, setCottage_1] = useState(getCottage.cottageList[0]);
-	const [cottage_2, setCottage_2] = useState(getCottage.cottageList[1]);
-	const [cottage_3, setCottage_3] = useState(getCottage.cottageList[2]);
-	const [cottage_4, setCottage_4] = useState(getCottage.cottageList[3]);
+	const [cottage_1, setCottage_1] = useState(getCottage.cottages[0]?.name);
+	const [cottage_2, setCottage_2] = useState(getCottage.cottages[1]?.name);
+	const [cottage_3, setCottage_3] = useState(getCottage.cottages[2]?.name);
+	const [cottage_4, setCottage_4] = useState(getCottage.cottages[3]?.name);
 	// cottage edit end
 
 	// submit right-bar modify start
 	const submitHandler = async () => {
-		const cottageName = [cottage_1, cottage_2, cottage_3, cottage_4];
+		const cottageNames = [cottage_1, cottage_2, cottage_3, cottage_4];
 
 		if (
-			cottage_1 === getCottage.cottageList[0] &&
-			cottage_2 === getCottage.cottageList[1] &&
-			cottage_3 === getCottage.cottageList[2] &&
-			cottage_4 === getCottage.cottageList[3]
+			cottage_1 === getCottage.cottages[0]?.name &&
+			cottage_2 === getCottage.cottages[1]?.name &&
+			cottage_3 === getCottage.cottages[2]?.name &&
+			cottage_4 === getCottage.cottages[3]?.name
 		) {
 			toast("Nothing have to submit!", {
 				position: "top-right",
@@ -54,7 +54,7 @@ const RightSidebar = ({ setMenuT, menuT, getCottage, setUpdateCottage }) => {
 					method: "POST",
 					body: JSON.stringify({
 						_id: getCottage._id,
-						cottageName
+						cottageNames
 					}),
 					headers: { "Content-Type": "application/json" }
 				});
