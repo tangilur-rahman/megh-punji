@@ -8,9 +8,13 @@ import Display from "../../components/for_dashboard/Display/Display";
 import Navbar from "../../components/for_dashboard/Navbar/Navbar";
 import ProfileEdit from "../../components/for_dashboard/ProfileEdit/ProfileEdit";
 import RightSidebar from "../../components/for_dashboard/RightSidebar/RightSidebar";
+import { GetContextApi } from "../../ContextApi";
 import "./Dashboard.css";
 
 const Dashboard = ({ getCottage, setUpdateCottage }) => {
+	// for booking docs refetching when client booked
+	const { submittedBook } = GetContextApi();
+
 	// for redirect login-page
 	const Navigate = useNavigate();
 
@@ -23,8 +27,14 @@ const Dashboard = ({ getCottage, setUpdateCottage }) => {
 	// for toggle profile-edit
 	const [profileT, setProfileT] = useState("");
 
+	// for get selected tab
+	const [selectedTab, setSelectedTab] = useState("All Cottages");
+
 	// for update admin profile
 	const [updateAdmin, setUpdateAdmin] = useState("");
+
+	// for updating displaying when date removed
+	const [getCheck, setCheck] = useState("");
 
 	// for get admin start
 	const [getAdmin, setAdmin] = useState("");
@@ -45,7 +55,6 @@ const Dashboard = ({ getCottage, setUpdateCottage }) => {
 					return Navigate("/admin/login");
 				} else {
 					setAdmin(result);
-					setIsLoading(false);
 				}
 			} catch (error) {
 				toast.error(error.message, {
@@ -59,6 +68,36 @@ const Dashboard = ({ getCottage, setUpdateCottage }) => {
 	}, [updateAdmin]);
 	// for get admin start
 
+	// for get all booking documents start
+	const [bookedDocs, setBookedDocs] = useState("");
+
+	useEffect(() => {
+		(async () => {
+			try {
+				const response = await fetch("/booking");
+
+				const result = await response.json();
+
+				if (result.error) {
+					toast.error(result.error, {
+						position: "top-right",
+						theme: "colored",
+						autoClose: 3000
+					});
+				} else {
+					setBookedDocs(result ? result : []);
+					setIsLoading(false);
+				}
+			} catch (error) {
+				toast.error(error.message, {
+					position: "top-right",
+					theme: "colored",
+					autoClose: 3000
+				});
+			}
+		})();
+	}, [submittedBook, getCheck]);
+	// for get all booking documents end
 	return (
 		<>
 			{isLoading ? (
@@ -86,13 +125,18 @@ const Dashboard = ({ getCottage, setUpdateCottage }) => {
 								menuT={menuT}
 								setMenuT={setMenuT}
 							/>
-							<Display />
+							<Display
+								bookedDocs={bookedDocs}
+								selectedTab={selectedTab}
+								setCheck={setCheck}
+							/>
 						</div>
 						<RightSidebar
 							menuT={menuT}
 							setMenuT={setMenuT}
 							getCottage={getCottage}
 							setUpdateCottage={setUpdateCottage}
+							setSelectedTab={setSelectedTab}
 						/>
 					</div>
 					{profileT && (

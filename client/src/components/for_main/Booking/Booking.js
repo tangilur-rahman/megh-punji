@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react";
 // react-toastify
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { GetContextApi } from "../../../ContextApi";
 
 // internal components
 import "./Booking.css";
@@ -14,6 +15,8 @@ import CottageDropdown from "./CottageDropdown/CottageDropdown";
 import NightDropdown from "./NightDropdown/NightDropdown";
 
 const Booking = ({ setBookingT }) => {
+	const { setSubmittedBook } = GetContextApi();
+
 	// for get input-fields values
 	const [getCottage, setCottage] = useState("");
 	const [getName, setName] = useState("");
@@ -102,6 +105,7 @@ const Booking = ({ setBookingT }) => {
 						theme: "colored",
 						autoClose: 2500
 					});
+					setSubmittedBook(Date.now());
 					setTimeout(() => {
 						setBookingT(false);
 						setDetailsT(false);

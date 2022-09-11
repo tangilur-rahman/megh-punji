@@ -1,6 +1,7 @@
 .display-container {
 	display: flex;
 	justify-content: center;
+	position: relative;
 }
 
 .display-container .display-wrapper {
@@ -8,6 +9,9 @@
 	background-color: white;
 	border-radius: 10px;
 	box-shadow: var(--box-shadow);
+	min-height: fit-content;
+	max-height: 82vh;
+	overflow: auto;
 }
 
 .display-container .display-wrapper h5 {
@@ -18,19 +22,18 @@
 	align-self: center;
 	opacity: 0.7;
 	font-weight: 600;
+	text-transform: capitalize;
 }
 
 .display-wrapper .table-container {
-	height: 67vh;
+	min-height: fit-content;
 	margin-top: 20px;
-	overflow-y: scroll;
-	border: 1px solid red;
 }
 
 .display-wrapper .table-container thead th {
-	opacity: 0.7;
 	border: 1px solid #dee2e6 !important;
 	text-align: center;
+	padding: 5px 10px;
 }
 
 .display-wrapper .table-container tbody tr td {
@@ -42,10 +45,170 @@
 	padding: 10px 0;
 	max-height: 50px !important;
 	border-bottom: 1px solid #dee2e6;
-	border: 1px solid red;
 }
 
-.display-wrapper .table-container tbody tr#unread {
-	color: #03045e;
-	font-weight: 700;
+.display-wrapper .table-container tbody tr td i {
+	cursor: pointer;
+	font-size: 18px;
+	color: red;
 }
+
+/* delete controller style start  */
+.display-container .delete-controller {
+	display: flex;
+	justify-content: flex-end;
+	margin-bottom: 10px;
+}
+
+.display-container .delete-controller button {
+	padding: 7px 20px;
+	font-size: 17px;
+	font-weight: 500;
+}
+
+.display-container .delete-controller button:hover {
+	transform: scale(1.04);
+}
+
+.display-container .delete-controller button:active {
+	transform: scale(0.97);
+}
+
+.display-container .delete-controller button:first-child {
+	margin-right: 30px;
+	color: white;
+}
+
+.display-container .conformation-popup {
+	background-color: white;
+	border-radius: 10px;
+	box-shadow: 0 0 5px 5px red;
+	padding: 35px 35px 10px 35px;
+	position: absolute;
+	left: 33%;
+	top: 28%;
+	width: 500px;
+}
+
+.display-container .conformation-popup .delete-controller {
+	margin-top: 20px;
+}
+/* delete controller style end  */
+
+/* media query for conformation popup start */
+@media screen and (max-width: 970px) {
+	.display-container .conformation-popup {
+		top: 20%;
+		left: 22%;
+	}
+}
+
+@media screen and (max-width: 830px) {
+	.display-container .conformation-popup {
+		top: 20%;
+		left: 17%;
+	}
+}
+
+@media screen and (max-width: 740px) {
+	.display-container .conformation-popup {
+		padding: 20px 20px 10px;
+		left: 15%;
+	}
+}
+
+@media screen and (max-width: 660px) {
+	.display-container .conformation-popup {
+		padding: 10px 20px;
+		margin: 0 20px;
+		left: 7%;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.display-container .conformation-popup {
+		left: 7%;
+		width: 80%;
+	}
+}
+
+@media screen and (max-width: 400px) {
+	.display-container .delete-controller button {
+		padding: 7px 10px;
+	}
+}
+/* media query for conformation popup end */
+
+/* table responsive start  */
+.table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.table td,
+.table th {
+	text-align: center;
+}
+
+.table th {
+	background-color: #264653;
+	color: #ffffff;
+}
+
+.table tbody tr:nth-child(even) {
+	background-color: #f5f5f5;
+}
+
+/*responsive*/
+@media (max-width: 1100px) {
+	.table thead {
+		display: none;
+	}
+
+	.table,
+	.table tbody,
+	.table tr,
+	.table td {
+		display: block;
+		width: 100%;
+	}
+	.table tr {
+		margin-bottom: 25px;
+		border: 3px solid #c2daff;
+		border-radius: 10px;
+	}
+
+	.table tr:hover {
+		outline: none;
+		border-color: #9ecaed;
+		box-shadow: 0 0 10px #9ecaed;
+	}
+
+	.table td {
+		padding-left: 50%;
+		text-align: right !important;
+		position: relative;
+		padding-right: 20px !important;
+	}
+
+	.table td #email {
+		display: inline-block;
+		width: 250px !important;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		text-align: right;
+	}
+
+	.table td::before {
+		content: attr(data-label);
+		position: absolute;
+		left: 0;
+		width: 50%;
+		padding-left: 15px;
+		font-size: 15px;
+		font-weight: bold;
+		text-align: left;
+	}
+}
+/* table responsive end */

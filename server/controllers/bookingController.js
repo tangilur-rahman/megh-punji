@@ -124,4 +124,46 @@ const searchCottage = async (req, res) => {
 	}
 };
 
-module.exports = { createBooking, fetchingBooking, searchCottage };
+// for get all booking documents
+const allBookingDocs = async (req, res) => {
+	try {
+		const allDocs = await bookingModel.find({});
+
+		if (allDocs.length > 0) {
+			res.status(200).json(allDocs);
+		}
+	} catch (error) {
+		res.status(500).json({ error: error.message });
+	}
+};
+
+// for removing date
+const removingDate = async (req, res) => {
+	try {
+		const document = await bookingModel.findOne({
+			cottage: req.params.cottage_name
+		});
+
+		if (document) {
+			const specificDocs = document.booking.filter((value) => {
+				return value._id.toString() === req.params._id;
+			});
+
+			if (specificDocs.length > 0) {
+				specificDocs[0].date = [];
+			}
+		}
+		document.save();
+		res.status(200).json({ message: "Remove successfully" });
+	} catch (error) {
+		res.status(500).json({ error: error.message });
+	}
+};
+
+module.exports = {
+	createBooking,
+	fetchingBooking,
+	searchCottage,
+	allBookingDocs,
+	removingDate
+};

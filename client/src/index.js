@@ -1,6 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
+import ContextHandler from "./ContextApi";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<App />);
+root.render(
+	<ContextHandler>
+		<App />
+	</ContextHandler>
+);

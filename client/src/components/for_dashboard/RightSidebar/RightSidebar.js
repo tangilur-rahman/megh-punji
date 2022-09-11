@@ -5,7 +5,13 @@ import { toast } from "react-toastify";
 // internal components
 import "./RightSidebar.css";
 
-const RightSidebar = ({ setMenuT, menuT, getCottage, setUpdateCottage }) => {
+const RightSidebar = ({
+	setMenuT,
+	menuT,
+	getCottage,
+	setUpdateCottage,
+	setSelectedTab
+}) => {
 	// detect outside click menu-bar hidden start
 	const menuRef = useRef();
 
@@ -105,10 +111,18 @@ const RightSidebar = ({ setMenuT, menuT, getCottage, setUpdateCottage }) => {
 					<div className="dropdown">
 						<i className="fa-solid fa-handshake"></i> Booking
 						<ul className="dropdown_menu dropdown_menu-1">
-							<li className="dropdown_item-1" id={editRight ? "active" : ""}>
+							<li
+								className="dropdown_item-1"
+								id={editRight ? "active" : ""}
+								onClick={() => setSelectedTab("All Cottages")}
+							>
 								All Cottages
 							</li>
-							<li className="dropdown_item-2" id={editRight ? "active" : ""}>
+							<li
+								className="dropdown_item-2"
+								id={editRight ? "active" : ""}
+								onClick={() => setSelectedTab(cottage_1)}
+							>
 								<input
 									value={cottage_1}
 									readOnly={editRight ? false : true}
@@ -116,7 +130,11 @@ const RightSidebar = ({ setMenuT, menuT, getCottage, setUpdateCottage }) => {
 									id={editRight ? "active" : ""}
 								/>
 							</li>
-							<li className="dropdown_item-3" id={editRight ? "active" : ""}>
+							<li
+								className="dropdown_item-3"
+								id={editRight ? "active" : ""}
+								onClick={() => setSelectedTab(cottage_2)}
+							>
 								<input
 									value={cottage_2}
 									readOnly={editRight ? false : true}
@@ -124,7 +142,11 @@ const RightSidebar = ({ setMenuT, menuT, getCottage, setUpdateCottage }) => {
 									id={editRight ? "active" : ""}
 								/>
 							</li>
-							<li className="dropdown_item-4" id={editRight ? "active" : ""}>
+							<li
+								className="dropdown_item-4"
+								id={editRight ? "active" : ""}
+								onClick={() => setSelectedTab(cottage_3)}
+							>
 								<input
 									value={cottage_3}
 									readOnly={editRight ? false : true}
@@ -132,7 +154,11 @@ const RightSidebar = ({ setMenuT, menuT, getCottage, setUpdateCottage }) => {
 									id={editRight ? "active" : ""}
 								/>
 							</li>
-							<li className="dropdown_item-5" id={editRight ? "active" : ""}>
+							<li
+								className="dropdown_item-5"
+								id={editRight ? "active" : ""}
+								onClick={() => setSelectedTab(cottage_4)}
+							>
 								<input
 									value={cottage_4}
 									readOnly={editRight ? false : true}
