@@ -13,7 +13,7 @@ import "react-toastify/dist/ReactToastify.css";
 // internal components
 import "./Reservation.css";
 
-const Reservation = ({ setBookingT }) => {
+const Reservation = ({ setBookingT, getCottage }) => {
 	// pick booking date
 	const [selectedDay, setSelectedDay] = useState(null);
 
@@ -75,7 +75,7 @@ const Reservation = ({ setBookingT }) => {
 	// cottageArray Start
 	const cottageArray = [
 		{
-			title: "Meghla",
+			title: getCottage.cottages[0].name,
 			rent: 5000,
 			array: [
 				"/Meghla/Meghla_1.jpg",
@@ -85,7 +85,7 @@ const Reservation = ({ setBookingT }) => {
 			search: searchCot[0]
 		},
 		{
-			title: "Purbasha",
+			title: getCottage.cottages[1].name,
 			rent: 4500,
 			array: [
 				"/Purbasha/Purbasha_1.jpg",
@@ -96,7 +96,7 @@ const Reservation = ({ setBookingT }) => {
 		},
 
 		{
-			title: "Rodela",
+			title: getCottage.cottages[2].name,
 			rent: 4500,
 			array: [
 				"/Rodela/Rodela_1.jpg",
@@ -106,7 +106,7 @@ const Reservation = ({ setBookingT }) => {
 			search: searchCot[2]
 		},
 		{
-			title: "Tarasha",
+			title: getCottage.cottages[3].name,
 			rent: 5000,
 			array: [
 				"/Tarasha/Tarasha_1.jpg",

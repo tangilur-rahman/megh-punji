@@ -14,7 +14,7 @@ import "./Booking.css";
 import CottageDropdown from "./CottageDropdown/CottageDropdown";
 import NightDropdown from "./NightDropdown/NightDropdown";
 
-const Booking = ({ setBookingT }) => {
+const Booking = ({ setBookingT, getCottageObj }) => {
 	const { setSubmittedBook } = GetContextApi();
 
 	// for get input-fields values
@@ -281,6 +281,7 @@ const Booking = ({ setBookingT }) => {
 									<CottageDropdown
 										getCottage={getCottage}
 										setCottage={setCottage}
+										getCottageObj={getCottageObj}
 									/>
 								</td>
 							</tr>

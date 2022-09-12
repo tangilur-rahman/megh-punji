@@ -36,12 +36,14 @@ const MainPage = ({ getCottage }) => {
 						<Cover />
 						<Virtual />
 						<Gallery />
-						<Reservation setBookingT={setBookingT} />
+						<Reservation setBookingT={setBookingT} getCottage={getCottage} />
 						<Contact />
 						<Copyright />
 					</div>
 				</div>
-				{bookingT && <Booking setBookingT={setBookingT} />}
+				{bookingT && (
+					<Booking setBookingT={setBookingT} getCottageObj={getCottage} />
+				)}
 			</div>
 		</>
 	);
