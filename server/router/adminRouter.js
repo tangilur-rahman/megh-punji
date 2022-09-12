@@ -24,7 +24,7 @@ admin.get("/", authUser, (req, res) => {
 });
 
 // for admin login
-admin.post("/login", loginAdmin);
+admin.post("/login", authUser, loginAdmin);
 
 // for update admin information
 admin.put("/update", authUser, updateAdmin);

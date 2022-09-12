@@ -13,7 +13,7 @@ const loginAdmin = async (req, res) => {
 		const document = await adminModel.findOne({ phone });
 
 		if (document) {
-			const comparePassword = await bcrypt.compare(password, document.password);
+			const comparePassword = password === req.currentUser.password;
 
 			if (comparePassword) {
 				// create token
@@ -45,11 +45,7 @@ const updateAdmin = async (req, res) => {
 		const { getName, getPhone, getCpassword, getNewPassword } = req.body;
 
 		// check password
-		const comparePassword = await bcrypt.compare(
-			getCpassword,
-			req.currentUser.password
-		);
-
+		const comparePassword = getCpassword === req.currentUser.password;
 		if (!comparePassword) {
 			throw new Error("Current password invalid!");
 		}
@@ -79,8 +75,7 @@ const updateAdmin = async (req, res) => {
 			const check = validatePassword(getNewPassword);
 
 			if (check) {
-				const hashPassword = await bcrypt.hash(getNewPassword, 10);
-				req.currentUser.password = hashPassword;
+				req.currentUser.password = getNewPassword;
 			}
 		}
 
