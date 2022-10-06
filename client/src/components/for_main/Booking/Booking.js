@@ -244,8 +244,6 @@ const Booking = ({ setBookingT, getCottageObj }) => {
 				const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
 				if (diffDays) {
-					console.log(diffDays);
-
 					diffDays.toString().length >= 10
 						? setAviNight(10)
 						: setAviNight(diffDays);
