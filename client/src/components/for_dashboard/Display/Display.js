@@ -118,8 +118,8 @@ const Display = ({ bookedDocs, selectedTab, setCheck }) => {
 												</span>
 											</td>
 											<td data-label="Check_In:">
-												{value.date.length > 0
-													? `${value.date[0][0].day}-${value.date[0][0].month}-${value.date[0][0].year}`
+												{value?.date.length > 0
+													? `${value.date[0][0]?.day}-${value.date[0][0]?.month}-${value?.date[0][0]?.year}`
 													: "Null"}
 											</td>
 											<td data-label="Night:">{value.night}</td>

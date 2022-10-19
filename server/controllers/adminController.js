@@ -1,5 +1,4 @@
 // external modules
-const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 // internal modules
@@ -10,29 +9,23 @@ const loginAdmin = async (req, res) => {
 	const { phone, password } = req.body;
 
 	try {
-		const document = await adminModel.findOne({ phone });
+		const document = await adminModel.findOne({ phone, password });
 
 		if (document) {
-			const comparePassword = password === req.currentUser.password;
+			// create token
+			const token = await jwt.sign(
+				{ mongodb_id: document._id },
+				process.env.SECRET_KEY,
+				{ expiresIn: "365d" }
+			);
 
-			if (comparePassword) {
-				// create token
-				const token = await jwt.sign(
-					{ mongodb_id: document._id },
-					process.env.SECRET_KEY,
-					{ expiresIn: "365d" }
-				);
+			await res.cookie(process.env.COOKIES_NAME, token, {
+				expires: new Date(Date.now() + 31556952000)
+			});
 
-				await res.cookie(process.env.COOKIES_NAME, token, {
-					expires: new Date(Date.now() + 31556952000)
-				});
-
-				res.status(200).json({ message: "Welcome to dashboard" });
-			} else {
-				res.status(400).json({ error: "Authentication Failed!" });
-			}
+			res.status(200).json({ message: "Welcome to dashboard" });
 		} else {
-			res.status(400).json({ error: "Invalid Phone Number!" });
+			res.status(400).json({ error: "Invalid Account!" });
 		}
 	} catch (error) {
 		res.status(500).json({ error: "Invalid Account!" });
