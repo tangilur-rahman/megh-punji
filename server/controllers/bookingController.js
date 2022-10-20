@@ -113,10 +113,10 @@ const searchCottage = async (req, res) => {
 			return getValue;
 		};
 
-		bookCottage.push(await searchingCottage("meghla"));
-		bookCottage.push(await searchingCottage("purbasha"));
-		bookCottage.push(await searchingCottage("rodela"));
-		bookCottage.push(await searchingCottage("tarasha"));
+		bookCottage.push(await searchingCottage("Meghla"));
+		bookCottage.push(await searchingCottage("Purbasha"));
+		bookCottage.push(await searchingCottage("Rodela"));
+		bookCottage.push(await searchingCottage("Rarasha"));
 
 		res.status(200).json(bookCottage);
 	} catch (error) {

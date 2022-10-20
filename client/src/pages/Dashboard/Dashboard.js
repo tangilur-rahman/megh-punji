@@ -98,6 +98,7 @@ const Dashboard = ({ getCottage, setUpdateCottage }) => {
 		})();
 	}, [submittedBook, getCheck]);
 	// for get all booking documents end
+
 	return (
 		<>
 			{isLoading ? (
