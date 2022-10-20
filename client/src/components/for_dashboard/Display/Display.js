@@ -1,7 +1,6 @@
 // external components
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import sortArray from "sort-array";
 
 // internal components
 import "./Display.css";
@@ -34,7 +33,7 @@ const Display = ({ bookedDocs, selectedTab, setCheck }) => {
 				});
 
 				specificCot &&
-					specificCot[0].booking?.map((result) =>
+					specificCot[0]?.booking.map((result) =>
 						allDocs.push({ ...result, cottage: selectedTab })
 					);
 
@@ -97,42 +96,44 @@ const Display = ({ bookedDocs, selectedTab, setCheck }) => {
 						</thead>
 						<tbody>
 							{displayingDoc &&
-								sortArray(displayingDoc, {
-									by: "updatedAt",
-									order: "desc"
-								}).map((value, index) => {
-									return (
-										<tr
-											key={index}
-											onClick={() =>
-												setSelectedRow({ _id: value._id, name: value.cottage })
-											}
-										>
-											<td data-label="#">{index + 1}</td>
-											<td data-label="Cottage:">{value.cottage}</td>
-											<td data-label="Name:">{value.name}</td>
-											<td data-label="Phone:">{value.phone}</td>
-											<td data-label="Email:">
-												<span id="email">
-													{value.email ? value.email : "Null"}
-												</span>
-											</td>
-											<td data-label="Check_In:">
-												{value?.date.length > 0
-													? `${value.date[0][0]?.day}-${value.date[0][0]?.month}-${value?.date[0][0]?.year}`
-													: "Null"}
-											</td>
-											<td data-label="Night:">{value.night}</td>
+								displayingDoc
+									.map((value, index) => {
+										return (
+											<tr
+												key={index}
+												onClick={() =>
+													setSelectedRow({
+														_id: value._id,
+														name: value.cottage
+													})
+												}
+											>
+												<td data-label="#">{index + 1}</td>
+												<td data-label="Cottage:">{value.cottage}</td>
+												<td data-label="Name:">{value.name}</td>
+												<td data-label="Phone:">{value.phone}</td>
+												<td data-label="Email:">
+													<span id="email">
+														{value.email ? value.email : "Null"}
+													</span>
+												</td>
+												<td data-label="Check_In:">
+													{value?.date.length > 0
+														? `${value.date[0][0]?.day}-${value.date[0][0]?.month}-${value?.date[0][0]?.year}`
+														: "Null"}
+												</td>
+												<td data-label="Night:">{value.night}</td>
 
-											<td data-label="Cancel:">
-												<i
-													className="bi bi-x-circle"
-													onClick={() => setConformPopup(!conformPopup)}
-												></i>
-											</td>
-										</tr>
-									);
-								})}
+												<td data-label="Cancel:">
+													<i
+														className="bi bi-x-circle"
+														onClick={() => setConformPopup(!conformPopup)}
+													></i>
+												</td>
+											</tr>
+										);
+									})
+									.reverse()}
 						</tbody>
 					</table>
 				</div>
