@@ -29,7 +29,7 @@ const Display = ({ bookedDocs, selectedTab, setCheck }) => {
 				setDisplayingDoc(allDocs);
 			} else {
 				const specificCot = bookedDocs?.filter((value) => {
-					return value.cottage === selectedTab.toLowerCase();
+					return value.cottage.toLowerCase() === selectedTab.toLowerCase();
 				});
 
 				specificCot &&
